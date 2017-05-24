@@ -2,8 +2,8 @@
 FROM fedora:24
 MAINTAINER takahasi
 
-ENV dist=fedora
-ENV rtmver=1_1_2
+ENV dist fedora
+ENV rtmver 1_1_2
 RUN set -x && \
     alias dnf='dnf -y' && \
     dnf install -y curl bc python-pip java-1.8.0-openjdk-headless && \
