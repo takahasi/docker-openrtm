@@ -1,11 +1,15 @@
 FROM ubuntu:17.04
+MAINTAINER takahasi
 
-RUN set -x
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
+ENV dist="ubuntu"
+ENV distver="17.04"
+ENV rtmver="1_1_2"
+RUN set -x && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes curl && \
-    curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_ubuntu.sh && \
-    chmod a+x pkg_install_ubuntu.sh && \
-    ./pkg_install_ubuntu.sh -s
+    curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \
+    chmod a+x pkg_install_${dist}.sh && \
+    bash ./pkg_install_${dist}.sh
 
 ENTRYPOINT ["/bin/bash", "-c"]
 
