@@ -19,7 +19,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x && \\
     alias apt-get='apt-get -y' && \\
     apt-get -qq update && \\
-    apt-get install -y curl bc default-jre python-pip bsdmainutils apt-utils aptitude && \\
+    apt-get install -y curl bc default-jre python-pip bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
     ./pkg_install_${dist}.sh -c && \\
@@ -65,10 +65,11 @@ class DockerImage:
         f.close()
 
 
-DockerImage('ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
-DockerImage('ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
+#DockerImage('ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
+#DockerImage('ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
 DockerImage('ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
 DockerImage('ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
+#DockerImage('ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
 #DockerImage('debian', '8', 'debian:8', 'x64', '1', '1', '2').create()
 #DockerImage('debian', '9', 'debian:9', 'x64', '1', '1', '2').create()
 #DockerImage('fedora', '24', 'debian:24', 'x64', '1', '1', '2').create()

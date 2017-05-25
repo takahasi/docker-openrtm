@@ -1,5 +1,5 @@
 
-FROM ubuntu:14.04
+FROM ubuntu:12.04
 MAINTAINER takahasi
 
 ENV dist ubuntu
@@ -15,10 +15,6 @@ RUN set -x && \
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \
     chmod a+x pkg_install_python_${dist}.sh && \
     ./pkg_install_python_${dist}.sh -y && \
-    pip install -U pip && \
-    pip install rtshell && \
-    mkdir -p /etc/bash_completion.d/ && \
-    cp /usr/local/lib/python2.7/dist-packages/rtshell/data/bash_completion /etc/bash_completion.d/ && \
     curl -O http://openrtm.org/pub/openrtp/packages/1.1.2.v20160526/eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
