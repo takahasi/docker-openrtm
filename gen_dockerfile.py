@@ -33,8 +33,7 @@ RUN set -x && \\
     curl -O http://openrtm.org/pub/openrtp/packages/1.1.2.v20160526/eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
-    ln -s /usr/share/openrtm-1.1/eclipse/openrtp /usr/bin/ && \\
-    rtm-naming
+    ln -s /eclipse/openrtp /usr/bin/
 
 ENTRYPOINT ["/bin/bash", "-c"]
 EXPOSE 80
