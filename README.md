@@ -1,5 +1,5 @@
-docker-opnrtm
-=============
+docker-openrtm
+==============
 Docker images for OpenRTM-aist
 
 # Usage
@@ -33,3 +33,8 @@ https://github.com/takahasi/docker-openrtm
 ## OpenRTM-aist 1.2.0
 |Tag|OS|Note|Status|
 |---|--|----|------|
+|ubuntu1204_openrtm120|ubuntu 12.04 64bit|w/rtshell, openrtp|N/A, rtshell is not support|
+|ubuntu1404_openrtm120|ubuntu 14.04 64bit|w/rtshell, openrtp|OK|
+|ubuntu1604_openrtm120|ubuntu 16.04 64bit|w/rtshell, openrtp|OK|
+|ubuntu1610_openrtm120|ubuntu 16.10 64bit|w/rtshell, openrtp|OK|
+|ubuntu1704_openrtm120|ubuntu 17.04 64bit|w/rtshell, openrtp|OK|
