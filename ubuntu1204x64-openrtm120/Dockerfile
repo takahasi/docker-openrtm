@@ -9,6 +9,7 @@ COPY pkg_install.sh /
 RUN set -x && \
     apt-get update -qq && \
     apt-get install -y bc iputils-ping net-tools && \
+    chmod a+x ./pkg_install.sh && \
     ./pkg_install.sh -l all -d --yes && \
     apt-get clean
 
