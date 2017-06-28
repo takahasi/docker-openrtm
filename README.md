@@ -5,7 +5,7 @@ Docker images for OpenRTM-aist
 # Usage
 If you try these images temporary;
 
-`docker run i--rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
+`docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
 
 If you customize based on these imases,
 please add the below in your Dockerfile;
@@ -58,18 +58,18 @@ https://github.com/takahasi/docker-openrtm
 |ubuntu1604_openrtm120|ubuntu 16.04 64bit|O|O|O|O|O|OK|
 |ubuntu1610_openrtm120|ubuntu 16.10 64bit|O|O|O|O|O|OK|
 |ubuntu1704_openrtm120|ubuntu 17.04 64bit|O|O|O|O|O|OK|
-|ubuntu1204_openrtm120_cxx|ubuntu 12.04 64bit|O|-|-|-|-||
-|ubuntu1404_openrtm120_cxx|ubuntu 14.04 64bit|O|-|-|-|-||
-|ubuntu1604_openrtm120_cxx|ubuntu 16.04 64bit|O|-|-|-|-||
-|ubuntu1610_openrtm120_cxx|ubuntu 16.10 64bit|O|-|-|-|-||
-|ubuntu1704_openrtm120_cxx|ubuntu 17.04 64bit|O|-|-|-|-||
-|ubuntu1204_openrtm120_python|ubuntu 12.04 64bit|-|O|-|-|-||
-|ubuntu1404_openrtm120_python|ubuntu 14.04 64bit|-|O|-|-|-||
-|ubuntu1604_openrtm120_python|ubuntu 16.04 64bit|-|O|-|-|-||
-|ubuntu1610_openrtm120_python|ubuntu 16.10 64bit|-|O|-|-|-||
-|ubuntu1704_openrtm120_python|ubuntu 17.04 64bit|-|O|-|-|-||
-|ubuntu1204_openrtm120_java|ubuntu 12.04 64bit|-|-|O|-|-||
-|ubuntu1404_openrtm120_java|ubuntu 14.04 64bit|-|-|O|-|-||
-|ubuntu1604_openrtm120_java|ubuntu 16.04 64bit|-|-|O|-|-||
-|ubuntu1610_openrtm120_java|ubuntu 16.10 64bit|-|-|O|-|-||
-|ubuntu1704_openrtm120_java|ubuntu 17.04 64bit|-|-|O|-|-||
+|ubuntu1204_openrtm120_cxx|ubuntu 12.04 64bit|O|-|-|-|-|OK|
+|ubuntu1404_openrtm120_cxx|ubuntu 14.04 64bit|O|-|-|-|-|OK|
+|ubuntu1604_openrtm120_cxx|ubuntu 16.04 64bit|O|-|-|-|-|OK|
+|ubuntu1610_openrtm120_cxx|ubuntu 16.10 64bit|O|-|-|-|-|OK|
+|ubuntu1704_openrtm120_cxx|ubuntu 17.04 64bit|O|-|-|-|-|OK|
+|ubuntu1204_openrtm120_python|ubuntu 12.04 64bit|-|O|-|-|-|OK|
+|ubuntu1404_openrtm120_python|ubuntu 14.04 64bit|-|O|-|-|-|OK|
+|ubuntu1604_openrtm120_python|ubuntu 16.04 64bit|-|O|-|-|-|OK|
+|ubuntu1610_openrtm120_python|ubuntu 16.10 64bit|-|O|-|-|-|OK|
+|ubuntu1704_openrtm120_python|ubuntu 17.04 64bit|-|O|-|-|-|OK|
+|ubuntu1204_openrtm120_java|ubuntu 12.04 64bit|-|-|O|-|-|OK|
+|ubuntu1404_openrtm120_java|ubuntu 14.04 64bit|-|-|O|-|-|OK|
+|ubuntu1604_openrtm120_java|ubuntu 16.04 64bit|-|-|O|-|-|OK|
+|ubuntu1610_openrtm120_java|ubuntu 16.10 64bit|-|-|O|-|-|OK|
+|ubuntu1704_openrtm120_java|ubuntu 17.04 64bit|-|-|O|-|-|OK|
