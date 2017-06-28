@@ -3,9 +3,14 @@ docker-openrtm
 Docker images for OpenRTM-aist
 
 # Usage
-`docker run takahasi/docker-openrtm:ubuntu1204_openrtm112`
-or
-`FROM takahasi/docker-openrtm:ubuntu1204_openrtm112` in your Dockerfile
+If you try these images temporary;
+
+`docker run i--rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
+
+If you customize based on these imases,
+please add the below in your Dockerfile;
+
+`FROM takahasi/docker-openrtm:ubuntu1404_openrtm112`
 
 # Docker Hub
 https://hub.docker.com/r/takahasi/docker-openrtm/
@@ -17,6 +22,11 @@ http://www.openrtm.org/openrtm/
 https://github.com/takahasi/docker-openrtm
 
 # Image List
+## Latest
+|Tag|RTM|OS|cxx|python|java|rtshell|openrtp|Status|
+|---|---|--|---|------|----|-------|-------|------|
+|latest|1.2.0|ubuntu 16.04 64bit|O|O|O|O|O|OK|
+
 ## OpenRTM-aist 1.1.2
 |Tag|OS|cxx|python|java|rtshell|openrtp|Status|
 |---|--|---|------|----|-------|-------|------|
