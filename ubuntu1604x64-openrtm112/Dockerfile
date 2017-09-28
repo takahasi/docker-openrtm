@@ -25,7 +25,7 @@ RUN set -x && \
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     ln -s /eclipse/openrtp /usr/bin/ && \
-    apt-get clean && \
+    apt-get autoclean && \
     apt-get autoremove
 
 

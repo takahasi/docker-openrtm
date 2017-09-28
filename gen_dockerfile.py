@@ -43,7 +43,7 @@ RUN set -x && \\
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
-    apt-get clean && \\
+    apt-get autoclean && \\
     apt-get autoremove && \\
     RUN passwd -d root
 '''
@@ -67,7 +67,7 @@ RUN set -x && \\
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
-    apt-get clean && \\
+    apt-get autoclean && \\
     apt-get autoremove
 '''
 
@@ -79,7 +79,7 @@ RUN set -x && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
     ./pkg_install_${dist}.sh -c && \\
-    apt-get clean && \\
+    apt-get autoclean && \\
     apt-get autoremove
 '''
 
@@ -91,7 +91,7 @@ RUN set -x && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \\
     chmod a+x pkg_install_python_${dist}.sh && \\
     ./pkg_install_python_${dist}.sh -y && \\
-    apt-get clean && \\
+    apt-get autoclean && \\
     apt-get autoremove
 '''
 

@@ -14,7 +14,7 @@ RUN set -x && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \
     chmod a+x pkg_install_${dist}.sh && \
     ./pkg_install_${dist}.sh -c && \
-    apt-get clean && \
+    apt-get autoclean && \
     apt-get autoremove
 
 
