@@ -1,6 +1,6 @@
 
 FROM ubuntu:16.04
-MAINTAINER takahasi
+MAINTAINER takahasi <3263ta@gmail.com>
 
 ENV dist ubuntu
 ENV rtmver 1_1_2
@@ -25,7 +25,8 @@ RUN set -x && \
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     ln -s /eclipse/openrtp /usr/bin/ && \
-    apt-get clean
+    apt-get clean && \
+    apt-get autoremove
 
 
 ENTRYPOINT ["/bin/bash", "-c"]

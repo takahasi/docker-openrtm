@@ -1,6 +1,6 @@
 
 FROM ubuntu:16.04
-MAINTAINER takahasi
+MAINTAINER takahasi <3263ta@gmail.com>
 
 ENV dist ubuntu
 ENV rtmver 1_1_2
@@ -14,7 +14,8 @@ RUN set -x && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \
     chmod a+x pkg_install_${dist}.sh && \
     ./pkg_install_${dist}.sh -c && \
-    apt-get clean
+    apt-get clean && \
+    apt-get autoremove
 
 
 ENTRYPOINT ["/bin/bash", "-c"]
