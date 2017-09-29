@@ -26,9 +26,11 @@ EXPOSE 80
 
 dockerfile_template_all_desktop = '''
 RUN set -x && \\
-    alias apt-get='apt-get -y' && \\
     apt-get -qq update && \\
-    apt-get install -y curl bc default-jre python-pip bsdmainutils apt-utils aptitude iputils-ping net-tools lxde xrdp && \\
+    apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+    apt-get install -y python-pip && \\
+    apt-get install -y default-jre && \\
+    apt-get install -y lxde xrdp && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
     ./pkg_install_${dist}.sh -c && \\
@@ -43,16 +45,17 @@ RUN set -x && \\
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
-    apt-get autoclean && \\
-    apt-get autoremove && \\
+    apt-get autoclean -y && \\
+    apt-get autoremove -y && \\
     RUN passwd -d root
 '''
 
 dockerfile_template_all = '''
 RUN set -x && \\
-    alias apt-get='apt-get -y' && \\
     apt-get -qq update && \\
-    apt-get install -y curl bc default-jre python-pip bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+    apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+    apt-get install -y python-pip && \\
+    apt-get install -y default-jre && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
     ./pkg_install_${dist}.sh -c && \\
@@ -67,32 +70,31 @@ RUN set -x && \\
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
-    apt-get autoclean && \\
-    apt-get autoremove
+    apt-get autoclean -y && \\
+    apt-get autoremove -y
 '''
 
 dockerfile_template_cxx = '''
 RUN set -x && \\
-    alias apt-get='apt-get -y' && \\
     apt-get -qq update && \\
     apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
     ./pkg_install_${dist}.sh -c && \\
-    apt-get autoclean && \\
-    apt-get autoremove
+    apt-get autoclean -y && \\
+    apt-get autoremove -y
 '''
 
 dockerfile_template_python = '''
 RUN set -x && \\
-    alias apt-get='apt-get -y' && \\
     apt-get -qq update && \\
-    apt-get install -y curl bc python-pip bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+    apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+    apt-get install -y python-pip && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \\
     chmod a+x pkg_install_python_${dist}.sh && \\
     ./pkg_install_python_${dist}.sh -y && \\
-    apt-get autoclean && \\
-    apt-get autoremove
+    apt-get autoclean -y && \\
+    apt-get autoremove -y
 '''
 
 class DockerImage:
@@ -139,27 +141,29 @@ class DockerImage:
         f.close()
 
 
-DockerImage('all_desktop', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
-DockerImage('all_desktop', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
-DockerImage('all_desktop', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
-DockerImage('all_desktop', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
-DockerImage('all_desktop', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
-DockerImage('all', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
-DockerImage('all', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
-DockerImage('all', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
-DockerImage('all', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
-DockerImage('all', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
-DockerImage('cxx', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
-DockerImage('cxx', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
-DockerImage('cxx', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
-DockerImage('cxx', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
-DockerImage('cxx', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
-DockerImage('python', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
-DockerImage('python', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
-DockerImage('python', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
-DockerImage('python', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
-DockerImage('python', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
-#DockerImage('debian', '8', 'debian:8', 'x64', '1', '1', '2').create()
-#DockerImage('debian', '9', 'debian:9', 'x64', '1', '1', '2').create()
-#DockerImage('fedora', '24', 'debian:24', 'x64', '1', '1', '2').create()
-#DockerImage('fedora', '25', 'fedora:25', 'x64', '1', '1', '2').create()
+if __name__=='__main__':
+
+    DockerImage('all_desktop', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
+    DockerImage('all_desktop', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
+    DockerImage('all_desktop', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
+    DockerImage('all_desktop', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
+    DockerImage('all_desktop', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
+    DockerImage('all', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
+    DockerImage('all', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
+    DockerImage('all', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
+    DockerImage('all', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
+    DockerImage('all', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
+    DockerImage('cxx', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
+    DockerImage('cxx', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
+    DockerImage('cxx', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
+    DockerImage('cxx', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
+    DockerImage('cxx', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
+    DockerImage('python', 'ubuntu', '1704', 'ubuntu:17.04', 'x64', '1', '1', '2').create()
+    DockerImage('python', 'ubuntu', '1610', 'ubuntu:16.10', 'x64', '1', '1', '2').create()
+    DockerImage('python', 'ubuntu', '1604', 'ubuntu:16.04', 'x64', '1', '1', '2').create()
+    DockerImage('python', 'ubuntu', '1404', 'ubuntu:14.04', 'x64', '1', '1', '2').create()
+    DockerImage('python', 'ubuntu', '1204', 'ubuntu:12.04', 'x64', '1', '1', '2').create()
+    #DockerImage('debian', '8', 'debian:8', 'x64', '1', '1', '2').create()
+    #DockerImage('debian', '9', 'debian:9', 'x64', '1', '1', '2').create()
+    #DockerImage('fedora', '24', 'debian:24', 'x64', '1', '1', '2').create()
+    #DockerImage('fedora', '25', 'fedora:25', 'x64', '1', '1', '2').create()
