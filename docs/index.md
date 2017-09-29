@@ -16,7 +16,7 @@ we hope to reduce the cost of environmental construction for RTC developers.
 
 # Index
 * [Usage](usage)
-* [Image List](images)
+* [Image List](image)
 
 # Link
 
