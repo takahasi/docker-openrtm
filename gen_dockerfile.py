@@ -35,7 +35,7 @@ RUN set -x && \\
     ./pkg_install.sh -l all -c --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y && \\
-    RUN passwd -d root
+    passwd -d root
 '''
 
 dockerfile_template_12x_all = '''
@@ -112,7 +112,7 @@ RUN set -x && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y && \\
-    RUN passwd -d root
+    passwd -d root
 '''
 
 dockerfile_template_11x_all = '''

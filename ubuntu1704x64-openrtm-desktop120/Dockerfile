@@ -17,7 +17,7 @@ RUN set -x && \
     ./pkg_install.sh -l all -c --yes && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
-    RUN passwd -d root
+    passwd -d root
 
 
 ENTRYPOINT ["/bin/bash", "-c"]
