@@ -3,11 +3,13 @@ Image List of Docker for OpenRTM
 
 # Image List
 ## Latest
+
 |Tag   |RTM  |OS                |cxx|python|java|rtshell|openrtp|desktop(rdp)|Status|
 |------|-----|------------------|---|------|----|-------|-------|------------|------|
 |latest|1.2.0|ubuntu 16.04 64bit|O  |O     |O   |O      |O      |O           |OK    |
 
 ## OpenRTM-aist 1.1.2
+
 |Tag                          |OS                |cxx|python|java|rtshell|openrtp|desktop(rdp)|Status                                |
 |-----------------------------|------------------|---|------|----|-------|-------|------------|--------------------------------------|
 |ubuntu1204_openrtm112-desktop|ubuntu 12.04 64bit|O  |O     |O   |O      |O      |O           |OK                                    |
@@ -36,6 +38,7 @@ Image List of Docker for OpenRTM
 |debian9_openrtm112           |debian 9 64bit    |O  |O     |O   |O      |O      |-           |N/A, OpenRTM-aist-1.1.2 is not support|
 
 ## OpenRTM-aist 1.2.0
+
 |Tag                          |OS                |cxx|python|java|rtshell|openrtp|desktop(rdp)|Status                     |
 |-----------------------------|------------------|---|------|----|-------|-------|------------|---------------------------|
 |ubuntu1204_openrtm120-desktop|ubuntu 12.04 64bit|O  |O     |O   |O      |O      |O           |N/A, rtshell is not support|
