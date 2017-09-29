@@ -1,5 +1,5 @@
 
-FROM ubuntu:17.04
+FROM ubuntu:12.04
 MAINTAINER takahasi <3263ta@gmail.com>
 
 ENV dist ubuntu
@@ -11,10 +11,12 @@ COPY pkg_install.sh /
 RUN set -x && \
     apt-get update -qq && \
     apt-get install -y bc iputils-ping net-tools && \
+    apt-get install -y lxde xrdp && \
     chmod a+x ./pkg_install.sh && \
-    ./pkg_install.sh -l python -r --yes && \
+    ./pkg_install.sh -l all -c --yes && \
     apt-get autoclean -y && \
-    apt-get autoremove -y
+    apt-get autoremove -y && \
+    RUN passwd -d root
 
 
 ENTRYPOINT ["/bin/bash", "-c"]
