@@ -34,11 +34,11 @@ https://github.com/takahasi/docker-openrtm
 ## OpenRTM-aist 1.1.2
 |Tag|OS|cxx|python|java|rtshell|openrtp|desktop(rdp)|Status|
 |---|--|---|------|----|-------|-------|------------|------|
-|ubuntu1204_openrtm-desktop112|ubuntu 12.04 64bit|O|O|O|O|O|O|OK|
-|ubuntu1404_openrtm-desktop112|ubuntu 14.04 64bit|O|O|O|O|O|O|OK|
-|ubuntu1604_openrtm-desktop112|ubuntu 16.04 64bit|O|O|O|O|O|O|OK|
-|ubuntu1610_openrtm-desktop112|ubuntu 16.10 64bit|O|O|O|O|O|O|N/A, OpenRTM-aist-1.1.2 is not support|
-|ubuntu1704_openrtm-desktop112|ubuntu 17.04 64bit|O|O|O|O|O|O|N/A, OpenRTM-aist-1.1.2 is not support|
+|ubuntu1204_openrtm112-desktop|ubuntu 12.04 64bit|O|O|O|O|O|O|OK|
+|ubuntu1404_openrtm112-desktop|ubuntu 14.04 64bit|O|O|O|O|O|O|OK|
+|ubuntu1604_openrtm112-desktop|ubuntu 16.04 64bit|O|O|O|O|O|O|OK|
+|ubuntu1610_openrtm112-desktop|ubuntu 16.10 64bit|O|O|O|O|O|O|N/A, OpenRTM-aist-1.1.2 is not support|
+|ubuntu1704_openrtm112-desktop|ubuntu 17.04 64bit|O|O|O|O|O|O|N/A, OpenRTM-aist-1.1.2 is not support|
 |ubuntu1204_openrtm112|ubuntu 12.04 64bit|O|O|O|O|O|-|OK|
 |ubuntu1404_openrtm112|ubuntu 14.04 64bit|O|O|O|O|O|-|OK|
 |ubuntu1604_openrtm112|ubuntu 16.04 64bit|O|O|O|O|O|-|OK|
