@@ -12,6 +12,7 @@ RUN set -x && \
     apt-get update -qq && \
     apt-get install -y bc iputils-ping net-tools && \
     chmod a+x ./pkg_install.sh && \
+    sync && \
     ./pkg_install.sh -l all -c --yes && \
     apt-get autoclean -y && \
     apt-get autoremove -y

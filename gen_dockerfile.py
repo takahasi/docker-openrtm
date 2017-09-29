@@ -31,6 +31,7 @@ RUN set -x && \\
     apt-get install -y bc iputils-ping net-tools && \\
     apt-get install -y lxde xrdp && \\
     chmod a+x ./pkg_install.sh && \\
+    sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y && \\
@@ -43,6 +44,7 @@ RUN set -x && \\
     apt-get update -qq && \\
     apt-get install -y bc iputils-ping net-tools && \\
     chmod a+x ./pkg_install.sh && \\
+    sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y
@@ -54,6 +56,7 @@ RUN set -x && \\
     apt-get update -qq && \\
     apt-get install -y bc iputils-ping net-tools && \\
     chmod a+x ./pkg_install.sh && \\
+    sync && \\
     ./pkg_install.sh -l c++ -r --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y
@@ -65,6 +68,7 @@ RUN set -x && \\
     apt-get update -qq && \\
     apt-get install -y bc iputils-ping net-tools && \\
     chmod a+x ./pkg_install.sh && \\
+    sync && \\
     ./pkg_install.sh -l python -r --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y
@@ -76,6 +80,7 @@ RUN set -x && \\
     apt-get update -qq && \\
     apt-get install -y bc iputils-ping net-tools && \\
     chmod a+x ./pkg_install.sh && \\
+    sync && \\
     ./pkg_install.sh -l java -r --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y
@@ -91,9 +96,11 @@ RUN set -x && \\
     apt-get install -y lxde xrdp && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
+    sync && \\
     ./pkg_install_${dist}.sh -c && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \\
     chmod a+x pkg_install_python_${dist}.sh && \\
+    sync && \\
     ./pkg_install_python_${dist}.sh -y && \\
     pip install -U pip && \\
     pip install rtshell && \\
@@ -116,9 +123,11 @@ RUN set -x && \\
     apt-get install -y default-jre && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
+    sync && \\
     ./pkg_install_${dist}.sh -c && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \\
     chmod a+x pkg_install_python_${dist}.sh && \\
+    sync && \\
     ./pkg_install_python_${dist}.sh -y && \\
     pip install -U pip && \\
     pip install rtshell && \\
@@ -138,6 +147,7 @@ RUN set -x && \\
     apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \\
     chmod a+x pkg_install_${dist}.sh && \\
+    sync && \\
     ./pkg_install_${dist}.sh -c && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y
@@ -150,6 +160,7 @@ RUN set -x && \\
     apt-get install -y python-pip && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \\
     chmod a+x pkg_install_python_${dist}.sh && \\
+    sync && \\
     ./pkg_install_python_${dist}.sh -y && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y

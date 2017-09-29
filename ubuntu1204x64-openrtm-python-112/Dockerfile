@@ -13,6 +13,7 @@ RUN set -x && \
     apt-get install -y python-pip && \
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \
     chmod a+x pkg_install_python_${dist}.sh && \
+    sync && \
     ./pkg_install_python_${dist}.sh -y && \
     apt-get autoclean -y && \
     apt-get autoremove -y

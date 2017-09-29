@@ -14,9 +14,11 @@ RUN set -x && \
     apt-get install -y default-jre && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \
     chmod a+x pkg_install_${dist}.sh && \
+    sync && \
     ./pkg_install_${dist}.sh -c && \
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \
     chmod a+x pkg_install_python_${dist}.sh && \
+    sync && \
     ./pkg_install_python_${dist}.sh -y && \
     pip install -U pip && \
     pip install rtshell && \

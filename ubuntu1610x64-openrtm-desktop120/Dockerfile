@@ -13,6 +13,7 @@ RUN set -x && \
     apt-get install -y bc iputils-ping net-tools && \
     apt-get install -y lxde xrdp && \
     chmod a+x ./pkg_install.sh && \
+    sync && \
     ./pkg_install.sh -l all -c --yes && \
     apt-get autoclean -y && \
     apt-get autoremove -y && \
