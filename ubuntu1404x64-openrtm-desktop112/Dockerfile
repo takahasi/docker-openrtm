@@ -28,8 +28,10 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     ln -s /eclipse/openrtp /usr/bin/ && \
     yes root | passwd root
 
+CMD ["/etc/init.d/xvnc", "start"]
+
 RUN apt-get autoclean -y && apt-get autoremove -y
 
-CMD ["/etc/init.d/xvnc", "start"]
+CMD ["rtm-naming", ""]
 ENTRYPOINT ["/bin/bash", "-c"]
 EXPOSE 80

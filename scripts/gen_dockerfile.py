@@ -22,7 +22,7 @@ RUN set -x && apt-get update -qq
 dockerfile_template_common_footer = '''
 RUN apt-get autoclean -y && apt-get autoremove -y
 
-CMD ["/etc/init.d/xvnc", "start"]
+CMD ["rtm-naming", ""]
 ENTRYPOINT ["/bin/bash", "-c"]
 EXPOSE 80
 '''
@@ -34,6 +34,8 @@ RUN apt-get install -y bc iputils-ping net-tools && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     yes root | passwd root
+
+CMD ["/etc/init.d/xvnc", "start"]
 '''
 
 dockerfile_template_12x_all = '''
@@ -85,6 +87,8 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
     yes root | passwd root
+
+CMD ["/etc/init.d/xvnc", "start"]
 '''
 
 dockerfile_template_11x_all = '''

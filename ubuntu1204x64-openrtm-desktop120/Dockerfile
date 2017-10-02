@@ -15,8 +15,10 @@ RUN apt-get install -y bc iputils-ping net-tools && \
     ./pkg_install.sh -l all -c --yes && \
     yes root | passwd root
 
+CMD ["/etc/init.d/xvnc", "start"]
+
 RUN apt-get autoclean -y && apt-get autoremove -y
 
-CMD ["/etc/init.d/xvnc", "start"]
+CMD ["rtm-naming", ""]
 ENTRYPOINT ["/bin/bash", "-c"]
 EXPOSE 80
