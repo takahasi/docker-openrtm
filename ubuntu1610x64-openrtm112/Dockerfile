@@ -1,26 +1,22 @@
 
 FROM ubuntu:16.10
 LABEL maintainer="takahasi <3263ta@gmail.com>" \
-      description="OpenRTM on Docker: OpenRTM-aist on Docker images."
+      description="OpenRTM on Docker: OpenRTM-aist on Docker images." \
+      build_type="ubuntu-all"
 
-ENV dist ubuntu
-ENV rtmver 1_1_2
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN set -x && apt-get update -qq
 
-RUN set -x && \
-    apt-get -qq update && \
-    apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \
+RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \
     apt-get install -y python-pip && \
     apt-get install -y default-jre && \
-    curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_${rtmver}/OpenRTM-aist/build/pkg_install_${dist}.sh && \
-    chmod a+x pkg_install_${dist}.sh && \
-    sync && \
-    ./pkg_install_${dist}.sh -c && \
-    curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_${rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_${dist}.sh && \
-    chmod a+x pkg_install_python_${dist}.sh && \
-    sync && \
-    ./pkg_install_python_${dist}.sh -y && \
+    curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_ubuntu.sh && \
+    chmod a+x pkg_install_ubuntu.sh && sync && \
+    ./pkg_install_ubuntu.sh -c && \
+    curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_1_1_2/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_ubuntu.sh && \
+    chmod a+x pkg_install_python_ubuntu.sh && sync && \
+    ./pkg_install_python_ubuntu.sh -y && \
     pip install -U pip && \
     pip install rtshell && \
     mkdir -p /etc/bash_completion.d/ && \
@@ -28,10 +24,9 @@ RUN set -x && \
     curl -O http://openrtm.org/pub/openrtp/packages/1.1.2.v20160526/eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
-    ln -s /eclipse/openrtp /usr/bin/ && \
-    apt-get autoclean -y && \
-    apt-get autoremove -y
+    ln -s /eclipse/openrtp /usr/bin/
 
+RUN apt-get autoclean -y && apt-get autoremove -y
 
 CMD ["/etc/init.d/xvnc", "start"]
 ENTRYPOINT ["/bin/bash", "-c"]
