@@ -30,3 +30,5 @@ sudo groupadd docker
 sudo gpasswd -a $USER docker
 
 echo "Please reboot to reflect this change."
+
+exit 0

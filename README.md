@@ -4,7 +4,7 @@ Docker images of OpenRTM-aist.
 Please check [detail.](https://takahasi.github.io/docker-openrtm/)
 
 # Usage
-If you try these images temporary;
+If you try these images, just type the below;
 
 `docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
 
@@ -15,6 +15,12 @@ please add the below in your Dockerfile;
 
 If you use desktop version, you can connect container via RDP protocol.
 (default user:root, password:root)
+
+Or you can use X-window forwarding(Linux only);
+
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh
+chmod +x docker-run.sh
+./script/docker-run.sh`
 
 
 # Docker Hub
