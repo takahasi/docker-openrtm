@@ -1,6 +1,6 @@
 
 FROM ubuntu:17.04
-LABEL maintainer=takahasi <3263ta@gmail.com> \
+LABEL maintainer="takahasi <3263ta@gmail.com>" \
       description="OpenRTM on Docker: OpenRTM-aist on Docker images."
 
 ENV dist ubuntu

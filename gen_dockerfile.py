@@ -10,7 +10,7 @@ import os
 
 dockerfile_template_common_header = '''
 FROM @IMAGE_NAME@
-LABEL maintainer=@AUTHOR@ \\
+LABEL maintainer="@AUTHOR@" \\
       description="OpenRTM on Docker: OpenRTM-aist on Docker images."
 
 ENV dist @DISTRIBUTION@
