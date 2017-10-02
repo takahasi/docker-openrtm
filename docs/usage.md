@@ -1,5 +1,5 @@
-Usage
-=====
+Usage of OpenRTM on DOcker
+==========================
 Please try;
 
 `docker run --rm -ti takahasi/docker-openrtm bash`
@@ -16,8 +16,8 @@ please add the below in your Dockerfile;
 If you use desktop version, you can connect container via RDP protocol.
 (default user:root, password:root)
 
-![Docker for OpenRTM as a Development Environment](img/sample1.png)
+![OpenRTM on Docker as a Development Environment](img/sample1.png)
 
-![Docker for OpenRTM as a Verification Environment](img/sample2.png)
+![OpenRTM on Docker as a Verification Environment](img/sample2.png)
 
 [Top Page](index)

@@ -1,6 +1,7 @@
-docker-openrtm
-==============
-Docker images for OpenRTM-aist
+OpenRTM on Docker (docker-openrtm)
+==================================
+Docker images of OpenRTM-aist.
+Please check [detail.](https://takahasi.github.io/docker-openrtm/)
 
 # Usage
 If you try these images temporary;
@@ -26,12 +27,12 @@ http://www.openrtm.org/openrtm/
 https://github.com/takahasi/docker-openrtm
 
 # Web page
-[Docker for OpenRTM Web Page](https://takahasi.github.io/docker-openrtm/)
+[OpenRTM on Docker Web Page](https://takahasi.github.io/docker-openrtm/)
 
 
 # Image List
 
-Please check [Docker for OpenRTM Web Page](https://takahasi.github.io/docker-openrtm/) to get detail information.
+Please check [OpenRTM on Docker Web Page](https://takahasi.github.io/docker-openrtm/) to get detail information.
 
 - latest (ubuntu1604_openrtm112-desktop)
 - ubuntu1204_openrtm112-desktop

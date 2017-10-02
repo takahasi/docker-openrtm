@@ -1,8 +1,8 @@
-Docker for OpenRTM (docker-openrtm)
-===================================
+OpenRTM on Docker (docker-openrtm)
+==================================
 
-# What is **Docker for OpenRTM**?
-**Docker for OpenRTM** is docker images for [OpenRTM-aist](http://www.openrtm.org/openrtm/).
+# What is **OpenRTM on Docker**?
+**OpenRTM on Docker** is docker images for [OpenRTM-aist](http://www.openrtm.org/openrtm/).
 
 # Motivation
 ## Use OpenRTM-aist easier!
@@ -12,7 +12,7 @@ It causes to increase costs for building the environment.
 By providing the development environment of RT-Middleware using Docker,
 we hope to reduce the cost of environmental construction for RTC developers.
 
-![Architecture of Docker for OpenRTM](img/basic.png)
+![Architecture of OpenRTM on Docker](img/basic.png)
 
 # Index
 * [Usage](usage)
@@ -30,4 +30,4 @@ we hope to reduce the cost of environmental construction for RTC developers.
 [github docker-openrtm](https://github.com/takahasi/docker-openrtm)
 
 ## Web page
-[Docker for OpenRTM Web Page](https://takahasi.github.io/docker-openrtm/)
+[OpenRTM on Docker Web Page](https://takahasi.github.io/docker-openrtm/)

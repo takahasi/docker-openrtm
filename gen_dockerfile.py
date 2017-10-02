@@ -3,14 +3,15 @@
 
 """ script for generate dockerfile templates
 
-This is xxx
+This is generating script for OpenRTM on Docker
 """
 
 import os
 
 dockerfile_template_common_header = '''
 FROM @IMAGE_NAME@
-MAINTAINER @AUTHOR@
+LABEL maintainer=@AUTHOR@ \\
+      description="OpenRTM on Docker: OpenRTM-aist on Docker images."
 
 ENV dist @DISTRIBUTION@
 ENV rtmver @RTM_VERSION@
@@ -20,6 +21,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 dockerfile_template_common_footer = '''
 
+CMD ["/etc/init.d/xvnc", "start"]
 ENTRYPOINT ["/bin/bash", "-c"]
 EXPOSE 80
 '''
@@ -35,7 +37,7 @@ RUN set -x && \\
     ./pkg_install.sh -l all -c --yes && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y && \\
-    passwd -d root
+    yes root | passwd root
 '''
 
 dockerfile_template_12x_all = '''
@@ -112,7 +114,7 @@ RUN set -x && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
     apt-get autoclean -y && \\
     apt-get autoremove -y && \\
-    passwd -d root
+    yes root | passwd root
 '''
 
 dockerfile_template_11x_all = '''

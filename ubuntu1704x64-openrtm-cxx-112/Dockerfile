@@ -1,6 +1,7 @@
 
 FROM ubuntu:17.04
-MAINTAINER takahasi <3263ta@gmail.com>
+LABEL maintainer=takahasi <3263ta@gmail.com> \
+      description="OpenRTM on Docker: OpenRTM-aist on Docker images."
 
 ENV dist ubuntu
 ENV rtmver 1_1_2
@@ -18,5 +19,6 @@ RUN set -x && \
     apt-get autoremove -y
 
 
+CMD ["/etc/init.d/xvnc", "start"]
 ENTRYPOINT ["/bin/bash", "-c"]
 EXPOSE 80

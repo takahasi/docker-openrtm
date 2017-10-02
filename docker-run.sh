@@ -1,7 +1,7 @@
 #!/bin/bash
 
-IMAGE=takahasi/docker-openrtm:ubuntu1604_openrtm112
+IMAGE=takahasi/docker-openrtm:ubuntu1604_openrtm112-desktop
+NETWORK=host
+X_OPT="-e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/root/.Xauthority"
 
-docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v $HOME/.Xauthority:/root/.Xauthority --net=host \
-    $IMAGE -c bash
+docker run -ti --rm $X_OPT--net=$NETWORK $IMAGE -c bash
