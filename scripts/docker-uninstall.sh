@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ue
+
 purge="sudo apt-get purge -y"
 
 $purge docker-ce

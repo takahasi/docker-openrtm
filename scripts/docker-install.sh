@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ue
+
 install="sudo apt-get install -y"
 update="sudo apt-get update -qq"
 remove="sudo apt-get remove -y"
