@@ -3,15 +3,15 @@
 使用方法
 ========
 
-簡単に試す方法
+簡単に試す方法。
 
 `docker run --rm -ti takahasi/docker-openrtm bash`
 
-バージョンを指定して実行する方法
+バージョンを指定して実行する方法。
 
 `docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
 
-Dockerfileを使って、イメージをカスタマイズする方法
+Dockerfileを使って、イメージをカスタマイズする方法。
 
 `FROM takahasi/docker-openrtm:ubuntu1404_openrtm112`
 

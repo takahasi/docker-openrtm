@@ -30,7 +30,7 @@ we hope to reduce the cost of environmental construction for RTC developers.
 ## OpenRTM-aist
 [OpenRTM-aist Web Page](http://www.openrtm.org/openrtm/)
 
-## Dockerfile github
+## Dockerfile GitHub
 [github docker-openrtm](https://github.com/takahasi/docker-openrtm)
 
 ## Web page
