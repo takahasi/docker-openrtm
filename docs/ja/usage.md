@@ -23,17 +23,16 @@ GUIアプリケーションを使う場合
 -----------------------------
 
 ### RDP
-Connect container via RDP protocol  
+リモートデスクトッププロトコル(RDP)で接続する場合(Desktopのみ)  
 (default user:root, password:root)  
-Desktop version only
 
 ### X-forwarding
-Display window via X-forwarding  
+Xウィンドウを利用して接続する場合  
 (Linux host only)  
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh
-chmod +x docker-run.sh
-./script/docker-run.sh`
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`
+`chmod +x docker-run.sh`
+`./script/docker-run.sh`
 
 
 [Top Page](index)
