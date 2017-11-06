@@ -2,14 +2,13 @@
 
 Usage of OpenRTM on Docker
 ==========================
-Please try;  
+Simple way.;  
 `docker run --rm -ti takahasi/docker-openrtm bash`
 
-If you want to select version;  
+If you want to select version.;  
 `docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
 
-If you customize based on these images,
-please add the below in your Dockerfile;  
+If you customize based on these images, update your Dockerfile.;  
 `FROM takahasi/docker-openrtm:ubuntu1404_openrtm112`
 
 ![OpenRTM on Docker as a Development Environment](img/sample1.png)
@@ -27,9 +26,9 @@ Desktop version only
 Display window via X-forwarding  
 (Linux host only)  
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh
-chmod +x docker-run.sh
-./script/docker-run.sh`
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`
+`chmod +x docker-run.sh`
+`./script/docker-run.sh`
 
 
 [Top Page](index)

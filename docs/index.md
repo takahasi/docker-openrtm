@@ -8,11 +8,12 @@ OpenRTM on Docker (docker-openrtm)
 
 # Motivation
 ## Use OpenRTM-aist easier!
-When developing RT-Components(RTC) with high diversity and backwards compatibility,
-the verication must be carried out by combining versions of various OSs and versions of RT-Middleware.
+When developing RT-Components(RTC), the verication must be carried out by combining versions.
+Various OSs and versions of RT-Middleware...
+Especially, it is serious for high diversity and backwards compatibility.
 It causes to increase costs for building the environment.
-By providing the development environment of RT-Middleware using Docker,
-we hope to reduce the cost of environmental construction for RTC developers.
+Solve these issues by providing the development environment of RT-Middleware using Docker.
+We hope to reduce the cost of environmental construction for RTC developers.
 
 ![Architecture of OpenRTM on Docker](img/basic.png)
 
