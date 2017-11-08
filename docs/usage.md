@@ -2,6 +2,12 @@
 
 Usage of OpenRTM on Docker
 ==========================
+Recommend.;  
+(Linux host only)  
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`  
+`chmod +x docker-run.sh`  
+`./docker-run.sh`
+
 Simple way.;  
 `docker run --rm -ti takahasi/docker-openrtm bash`
 
@@ -26,8 +32,8 @@ Desktop version only
 Display window via X-forwarding  
 (Linux host only)  
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`
-`chmod +x docker-run.sh`
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`  
+`chmod +x docker-run.sh`  
 `./script/docker-run.sh`
 
 
