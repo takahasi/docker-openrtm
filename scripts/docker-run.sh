@@ -18,7 +18,8 @@ fi
 echo "IMAGE: $tag"
 
 # Docker Option
-option="-v $HOME:$HOME:rw --privileged=true"
+entry=$PWD
+option="-v $HOME:$HOME:rw --privileged=true -e ENTRY=$entry"
 option_network="--net=host"
 option_display="-e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/root/.Xauthority"
 
@@ -26,7 +27,7 @@ option_display="-e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.X
 xhost local:
 
 # Start docker w/X11-forwarding
-docker run -ti --rm $option $option_display $option_network $image -c bash
+docker run -ti --rm $option $option_display $option_network $image -c 'cd $ENTRY;bash'
 
 # Disable X11-forwarding
 xhost -
