@@ -44,9 +44,11 @@ function install() {
 
 function setup() {
   # Setup permission
-  sudo groupadd docker
-  sudo gpasswd -a $USER docker
-  echo "Please reboot or re-login to reflect this change."
+  if $su groupadd docker > /dev/null
+  then
+    $su gpasswd -a $USER docker
+    echo "Please reboot or re-login to reflect this change."
+  fi
 }
 
 preinstall
