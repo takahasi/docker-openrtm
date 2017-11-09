@@ -1,5 +1,7 @@
-sudo: false
+sudo: true
 language: node_js
 node_js: "stable"
 script:
   - npm run textlint
+  - ./scripts/docker-install.sh
+  - ./scripts/docker-uninstall.sh

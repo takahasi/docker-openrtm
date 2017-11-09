@@ -2,35 +2,55 @@
 
 set -ue
 
-install="sudo apt-get install -y"
-update="sudo apt-get update -qq"
-remove="sudo apt-get remove -y"
-key="sudo apt-key"
-add_repo="sudo add-apt-repository"
-repo="[arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# Docker Official Repository
+version=`lsb_release -cs`
+repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu $version stable"
 #repo="[arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-# Remove old version
-$remove docker docker-engine docker.io
+# Docker Packages
+packages_docker_old="docker docker-engine docker.io"
+packages_docker="docker-ce"
+packages_extra="linux-image-extra-$(uname -r) \
+    linux-image-extra-virtual \
+    apt-transport-https ca-certificates \
+    curl \
+    software-properties-common"
 
-# Install base package
-$update
-$install linux-image-extra-$(uname -r) linux-image-extra-virtual
-$install apt-transport-https ca-certificates curl software-properties-common
+# Commands
+su="sudo"
+apt="$su apt-get"
+install="$apt install -y"
+update="$apt update -qq"
 
-# Setup Docker repository
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-$key fingerprint 0EBFCD88
-$add_repo $repo
+function preinstall() {
+  # Remove old version
+  $apt remove -y $packages_docker_old
 
-# Install Docker
-$update
-$install docker-ce
+  # Install base package
+  $update
+  $install $packages_extra
+}
 
-# Setup permission
-sudo groupadd docker
-sudo gpasswd -a $USER docker
+function install() {
+  # Setup Docker repository
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  $su apt-key fingerprint 0EBFCD88
+  $su add-apt-repository "$repo"
 
-echo "Please reboot to reflect this change."
+  # Install Docker
+  $update
+  $install $packages_docker
+}
+
+function setup() {
+  # Setup permission
+  sudo groupadd docker
+  sudo gpasswd -a $USER docker
+  echo "Please reboot or re-login to reflect this change."
+}
+
+preinstall
+install
+setup
 
 exit 0
