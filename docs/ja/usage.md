@@ -3,16 +3,28 @@
 
 インストール方法
 ================
-
-インストールする必要があるのは Docker とその依存パッケージのみです．
+インストールする必要があるのは Docker とその依存パッケージのみです．  
 OpenRTM-aist に関係するパッケージのインストールは一切必要ありません．
+
+- Windows(64bit版のみ)
+  - 10
+- Linux(64bit版のみ)
+  - Ubuntu
+  - Fedora
+  - Debian
+  - Raspbian
+- MacOSX
+  - El Capitan 10.11 以降
+- FeeBSD
 
 Dockerのインストール
 --------------------
+最新の情報はDockerホームページに記載されています．
+https://docs.docker.com/engine/installation/
 
 - Windows の場合
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-install.sh`  
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-install.bat`  
 `chmod +x docker-install.sh`  
 `./docker-install.sh`
 
@@ -34,10 +46,10 @@ Dockerのインストール
 
 OpenRTM on Docker 使用方法
 ===========================
-
 Docker がインストールされている環境であれば OpenRTM on Docker が利用できます．  
-イメージをダウンロードしてキャッシュするため，初回起動時は外部ネットワークに接続されている必要があります．  
-また，初回起動時のみ起動まで時間がかかります（ネットワーク環境に依存しますが，数分程度）．  
+イメージをダウンロードしてキャッシュするため，初回起動時は外部ネットワークに接続されている必要があり，  
+初回起動時のみ起動まで時間がかかります（ネットワーク環境に依存しますが，数分程度）．  
+一度キャッシュされてしまえば，２回目移行の起動は速くなります（コンピュータスペックに依存しますが１秒未満）．
 
 おすすめの利用方法(Linux ホストでの利用) 
 ---------------------------------------- 
