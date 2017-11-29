@@ -1,10 +1,11 @@
 [English](../usage)
 
-
-インストール方法
-================
+OpenRTM on Docker の使い方
+=========================
 インストールする必要があるのは Docker とその依存パッケージのみです．  
 OpenRTM-aist に関係するパッケージのインストールは一切必要ありません．
+
+現在 OpenRTM on Docker の動作が確認できているのは下記のホストOSです．
 
 - Windows(64bit版のみ)
   - 10
@@ -16,6 +17,8 @@ OpenRTM-aist に関係するパッケージのインストールは一切必要�
 - MacOSX
   - El Capitan 10.11 以降
 - FeeBSD
+
+---
 
 Dockerのインストール
 --------------------
@@ -43,16 +46,16 @@ https://docs.docker.com/engine/installation/
 
 - FreeBSDの場合
 
+---
 
 OpenRTM on Docker 使用方法
-===========================
+--------------------------
 Docker がインストールされている環境であれば OpenRTM on Docker が利用できます．  
 イメージをダウンロードしてキャッシュするため，初回起動時は外部ネットワークに接続されている必要があり，  
 初回起動時のみ起動まで時間がかかります（ネットワーク環境に依存しますが，数分程度）．  
 一度キャッシュされてしまえば，２回目移行の起動は速くなります（コンピュータスペックに依存しますが１秒未満）．
 
-おすすめの利用方法(Linux ホストでの利用) 
----------------------------------------- 
+### おすすめの利用方法(Linux ホストでの利用) 
 * 最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 * HOMEディレクトリが共有されてDockerイメージが起動します  
 * シェルを抜けるとコンテナが消去されます  
@@ -60,30 +63,26 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
 `chmod +x docker-run.sh`  
 `./docker-run.sh`
 
-簡単に試す方法
----------------
+### 簡単に試す方法
 `docker run --rm -ti takahasi/docker-openrtm bash`
 
-バージョンを指定して実行する方法
----------------------------------
+### バージョンを指定して実行する方法
 `docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash`
 
-Dockerfileを使って、イメージをカスタマイズする方法
----------------------------------------------------
+### Dockerfileを使って、イメージをカスタマイズする方法
 `FROM takahasi/docker-openrtm:ubuntu1404_openrtm112`
 
 ![OpenRTM on Docker as a Development Environment](../img/sample1.png)
 
 ![OpenRTM on Docker as a Verification Environment](../img/sample2.png)
 
-GUIアプリケーションを使う場合
------------------------------
+### GUIアプリケーションを使う場合
 
-### RDP
+#### RDP
 リモートデスクトッププロトコル(RDP)で接続する場合(Desktopのみ)  
 (default user:root, password:root)  
 
-### X-forwarding
+#### X-forwarding
 Xウィンドウを利用して接続する場合  
 (Linux host only)  
 
@@ -91,5 +90,6 @@ Xウィンドウを利用して接続する場合
 `chmod +x docker-run.sh`  
 `./script/docker-run.sh`
 
+---
 
 [Top Page](index)
