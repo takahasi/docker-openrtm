@@ -55,14 +55,14 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
 初回起動時のみ起動まで時間がかかります（ネットワーク環境に依存しますが，数分程度）．  
 一度キャッシュされてしまえば，２回目移行の起動は速くなります（コンピュータスペックに依存しますが１秒未満）．
 
-### おすすめの利用方法(Linux ホストでの利用) 
+### おすすめの利用方法(Linux ホストの場合) 
 - 最新の全パッケージ入り OpenRTM on Docker イメージを利用します
-- HOMEディレクトリが共有されてDockerイメージが起動します  
+- HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます  
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`
-`chmod +x docker-run.sh`
-`./docker-run.sh`
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh`
+`chmod +x ｒｔｍdocker.sh`
+`./rtmdocker.sh`
 
 ### 簡単に試す方法
 `docker run --rm -ti takahasi/docker-openrtm bash`
@@ -77,15 +77,15 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
 
 ![OpenRTM on Docker as a Verification Environment](../img/sample2.png)
 
-### GUIアプリケーションを使う場合
+### GUIアプリケーションを使う方法
 
 #### RDP
-リモートデスクトッププロトコル(RDP)で接続する場合(Desktopのみ)  
+リモートデスクトッププロトコル(RDP)で接続する場合
 (default user:root, password:root)  
 
 #### X-forwarding
 Xウィンドウを利用して接続する場合  
-(Linux host only)  
+(Linux/Mac ホストの場合)  
 
 `wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`  
 `chmod +x docker-run.sh`  
