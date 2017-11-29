@@ -60,9 +60,9 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます  
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh`
-`chmod +x ｒｔｍdocker.sh`
-`./rtmdocker.sh`
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh`　　
+`chmod +x ｒｔｍdocker.sh`　　
+`./rtmdocker.sh`　　
 
 ### 簡単に試す方法
 `docker run --rm -ti takahasi/docker-openrtm bash`
@@ -87,9 +87,9 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
 Xウィンドウを利用して接続する場合  
 (Linux/Mac ホストの場合)  
 
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`  
-`chmod +x docker-run.sh`  
-`./script/docker-run.sh`
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh`　　
+`chmod +x ｒｔｍdocker.sh`　　
+`./rtmdocker.sh`　　
 
 ---
 
