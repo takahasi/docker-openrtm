@@ -56,11 +56,12 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
 一度キャッシュされてしまえば，２回目移行の起動は速くなります（コンピュータスペックに依存しますが１秒未満）．
 
 ### おすすめの利用方法(Linux ホストでの利用) 
-* 最新の全パッケージ入り OpenRTM on Docker イメージを利用します
-* HOMEディレクトリが共有されてDockerイメージが起動します  
-* シェルを抜けるとコンテナが消去されます  
-`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`  
-`chmod +x docker-run.sh`  
+- 最新の全パッケージ入り OpenRTM on Docker イメージを利用します
+- HOMEディレクトリが共有されてDockerイメージが起動します  
+- シェルを抜けるとコンテナが消去されます  
+
+`wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-run.sh`
+`chmod +x docker-run.sh`
 `./docker-run.sh`
 
 ### 簡単に試す方法
