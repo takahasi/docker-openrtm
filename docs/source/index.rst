@@ -57,7 +57,7 @@ OpenRTM on Docker はホストOSの環境差異を吸収でき，実行環境に
 ---------
 
 本書はOpenRTM on Dockerの機能や利用方法について記載したドキュメントです．
-
+Docker のインストール方法，OpenRTM on Dockerのイメージ一覧，関連ツールの利用方法を記しています．
 
 
 1.2. 位置づけ
@@ -146,8 +146,11 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
 これらは本書執筆時点の情報であるため，
 再配布等を行う場合は利用者が再度確認してご利用下さい．
 
-.. list-table:: 代表的なソフトウェアの欄センス
+.. list-table:: 代表的なソフトウェアのライセンス
 
+  * -
+    -
+    -
   * - Docker Community Edition
     - Apache License 2.0
     - https://github.com/moby/moby/blob/master/LICENSE
@@ -162,10 +165,6 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
     - MIT License
     - https://github.com/takahasi/docker-openrtm/blob/master/LICENSE
 
-
-Apache License 2.0
-
-
 5. 使用方法
 ==================
 インストールする必要があるのは Docker とその依存パッケージのみです．
@@ -175,18 +174,20 @@ OpenRTM-aist に関係するパッケージのインストールは一切必要�
 下記はDockerが正式サポートしているものを列挙していますが，
 下記以外においても Docker がインストールできれば動作可能です．
 
-.. list-table:: 動作確認できているOS
+.. list-table:: 動作確認できているホストOS
   :header-rows: 0
   :stub-columns: 1
 
+  * -
+    -
   * - Windows
     - | Windows Server 2016 64bit（確認中）
       | Windows 10 64bit
   * - Linux
-    - | Ubuntu 14.04 64bit
-      | Ubuntu 16.04 64bit
-      | Ubuntu 17.04 64bit
-      | Ubuntu 17.10 64bit（確認中）
+    - | Ubuntu Trusty 14.04 64bit
+      | Ubuntu Xenial 16.04 64bit
+      | Ubuntu Zesty 17.04 64bit
+      | Ubuntu Artful 17.10 64bit（確認中）
       | Fedora 24（確認中）
       | Fedora 25（確認中）
       | CentOS 7（確認中）
@@ -211,40 +212,104 @@ https://docs.docker.com/engine/installation/
 Enterprise Editionを利用する場合でも一部インストール中の画面構成等が異なるだけで，
 本書記載のOpenRTM on Dockerの機能は利用できます．
 
-* Windows の場合: 
+Windows 
+``````````````
+Windows ホスト向けDocker(Docker for Windows)は Hyper-V もしくは Virtualbox を利用してLinuxバーチャルマシンを起動し，そのゲストOS上でDockerエンジンを起動します．
+
+1. https://download.docker.com/win/stable/Docker%20for%20Windows%20Installer.exe から Docker のインストーラ(Docker for Windows Installer.exe)をダウンロードします
+2. ダウンロードした Docker for Windows Installer.exe を実行し，セットアップウィザードが開始されるので，ライセンスを確認し"I agree"を選択します
+3. インストールが開始され，完了後にセットアップウィザードの"Finish"を選択します
+4. アプリケーションから Docker for Windows を起動すると Docker が常駐ソフトとして起動されます
+5. https://docs.docker.com/docker-for-windows/install/#install-docker-for-windows に詳細が記載されています
+
+Linux(Ubuntu)
+``````````````
+1. 下記のコマンドを順番にシェル上で実行します
 
 .. code-block:: sh
 
-  wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-install.bat
-  chmod +x docker-install.sh
-  ./docker-install.sh
+  $ sudo apt-get remove docker docker-engine docker.io
+  $ sudo apt-get update
+  $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  $ sudo apt-key fingerprint 0EBFCD88
+  $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  $ sudo apt-get update
+  $ sudo apt-get install docker-ce
 
-- Linux(Ubuntu)の場合: 
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/ に詳細が記載されています
+
+また，下記ツールを利用すれば上記の手順を一括で処理することができます．
 
 .. code-block:: sh
 
-  wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-install.sh
-  chmod +x docker-install.sh
-  ./docker-install.sh
+  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-install.sh
+  $ chmod +x docker-install.sh
+  $ ./docker-install.sh
 
-* Linux(Debian)の場合
+Linux(Debian)
+``````````````
+1. 下記のコマンドを順番にシェル上で実行します
 
-* Linux(Fedora)の場合
+.. code-block:: sh
+
+  $ sudo apt-get remove docker docker-engine docker.io
+  $ sudo apt-get update
+  $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+  $ sudo apt-key fingerprint 0EBFCD88
+  $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+  $ sudo apt-get update
+  $ sudo apt-get install docker-ce
+
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/debian/ に詳細が記載されています
+
+Linux(Fedora)
+``````````````
+1. 下記のコマンドを順番にシェル上で実行します
+
+.. code-block:: sh
+
+  $ sudo dnf remove docker docker-common docker-selinux docker-engine-selinux docker-engine
+  $ sudo dnf -y install dnf-plugins-core
+  $ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  $ sudo dnf install docker-ce
+  $ sudo systemctl start docker
+
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/fedora/  に詳細が記載されています
+
+Linux(CentOS)
+``````````````
+.. code-block:: sh
+
+  $ sudo yum remove docker docker-common docker-selinux docker-engine
+  $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+  $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  $ sudo yum install docker-ce
+  $ sudo systemctl start docker
+
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/centos/  に詳細が記載されています
+
+MacOSX
+``````````````
+1. https://download.docker.com/mac/stable/Docker.dmg から Docker のディスクイメージ(Docker.dmg)をダウンロードします
+2. ダウンロードした Docker.dmg を実行し，Docker アイコンを Applications フォルダにドラッグ＆ドロップします
+3. インストールが開始され，成功後は Docker が常駐ソフトとして起動されます
+4. https://docs.docker.com/docker-for-mac/install/ に詳細が記載されています
 
 
-* MacOSX の場合
-
-* FreeBSDの場合
-
-
-OpenRTM on Docker 使用方法
+OpenRTM on Docker 起動方法
 --------------------------
 Docker がインストールされている環境であれば OpenRTM on Docker が利用できます．  
 イメージをダウンロードしてキャッシュするため，初回起動時は外部ネットワークに接続されている必要があり，  
 初回起動時のみ起動まで時間がかかります（ネットワーク環境に依存しますが，数分程度）．  
 一度キャッシュされてしまえば，２回目移行の起動は速くなります（コンピュータスペックに依存しますが１秒未満）．
 
-おすすめの利用方法(Linux ホストの場合) 
+OpenRTM on Docker Tools を利用する方法 
 ``````````````````````````````````````
 - 最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
@@ -256,15 +321,15 @@ Docker がインストールされている環境であれば OpenRTM on Docker 
   chmod +x rtｍdocker.sh
   ./rtmdocker.sh
 
-Docker コマンドで直接イメージを起動: 
-``````````````````````````````````````
+Docker コマンドで直接イメージを起動する方法 
+```````````````````````````````````````````
 
 .. code-block:: sh
 
   docker run --rm -ti takahasi/docker-openrtm bash
 
-イメージのバージョンを指定し起動する方法: 
-```````````````````````````````````````````
+Docker イメージのバージョンを指定し起動する方法
+`````````````````````````````````````````````````
 
 .. code-block:: sh
 
@@ -291,7 +356,6 @@ Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズする�
   CMD ["MyComponent", ""]
 
 
-
 GUIアプリケーションを使う方法
 ````````````````````````````````````````````````````````
 
@@ -312,20 +376,91 @@ Xウィンドウを利用して接続する場合  (Linux/Mac ホストの場合
 
 .. code-block:: sh
 
-  wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh
-  chmod +x ｒｔｍdocker.sh
-  ./rtmdocker.sh
+  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh
+  $ chmod +x ｒｔｍdocker.sh
+  $ ./rtmdocker.sh
 
 
-6. 利用できるイメージ
-=====================
+OpenRTM on Docker Tools 詳細
+----------------------------------
+
+rtmdocker.sh
+`````````````
+rtmdocker.sh はOpenRTM on Dockerイメージを起動するためのスクリプトです．
+起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
+ネットワークはホストのネットワークデバイスを利用する設定となっているため，
+コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
+
+使用方法
+'''''''''
+.. code-block:: sh
+
+  ./rtmdocker.sh [オプション] コマンド
+
+コマンド
+''''''''
+.. list-table:: rtmdocker.sh コマンド一覧
+  :header-rows: 0
+  :stub-columns: 1
+
+  * - openrtp
+    - OpenRTP を起動する
+  * - bash
+    - bash を起動する
+  * - Composite
+    - C++ サンプルコンポーネント "Composite" を起動する
+  * - ConsigSample
+    - C++ サンプルコンポーネント "ConsigSampleComp" を起動する
+  * - ConsoleIn
+    - C++ サンプルコンポーネント "ConsoleInComp" を起動する
+  * - ConsoleOut
+    - C++ サンプルコンポーネント "ConsoleOutComp" を起動する
+  * - Controller
+    - C++ サンプルコンポーネント "ControllerComp" を起動する
+  * - Motor
+    - C++ サンプルコンポーネント "MotorComp" を起動する
+  * - SeqIn
+    - C++ サンプルコンポーネント "SeqInComp" を起動する
+  * - SeqOut
+    - C++ サンプルコンポーネント "SeqOutComp" を起動する
+  * - MyServiceConsumer
+    - C++ サンプルコンポーネント "SeqOutComp" を起動する
+  * - MyServiceProvider
+    - C++ サンプルコンポーネント "SeqOutComp" を起動する
+  * - Sensor
+    - C++ サンプルコンポーネント "SensorComp" を起動する
+
+オプション
+''''''''''
+.. list-table::  rtmdocker.sh オプション一覧
+  :header-rows: 0
+  :stub-columns: 1
+
+  * - -h, --help
+    - ヘルプメッセージを表示する
+  * - -v, --version
+    - ツールのバージョンを表示する
+  * - -n, --nameserver
+    - コマンド実行前にネームサーバーを起動する
+  * - -t, --tag TAGNAME
+    - 使用するDockerイメージのタグを指定する
+  * - -r, --run COMPONENT
+    - 指定したコンポーネントをDockerコンテナ内で起動する
+  * - -c, --compile [ARG]
+    - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
+  * - -x, --xforward
+    - X-forwarding を有効にする
+
+
+利用できるイメージ（タグ名）
+---------------------------
 
 .. csv-table:: 利用できるイメージ一覧
   :header-rows: 1
   :widths: 6, 4, 3, 2, 2, 2, 2, 2, 3
   :file: ../data/images.csv
 
-7. FAQ
+6. FAQ
 =====================
 
 * 利用可能なPCのスペックは？
