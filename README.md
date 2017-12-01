@@ -1,9 +1,14 @@
 OpenRTM on Docker (docker-openrtm)
 ==================================
 Docker images of OpenRTM-aist.
-Please check [detail.](https://takahasi.github.io/docker-openrtm/)
+Please check [manual.](https://readthedocs.org/projects/openrtm-on-docker/)
 
-[![Build Status](https://travis-ci.org/takahasi/docker-openrtm.svg?branch=master)](https://travis-ci.org/takahasi/docker-openrtm)
+# Build Status
+
+[![TextLint by Travis.ci Status](https://travis-ci.org/takahasi/docker-openrtm.svg?branch=master)](https://travis-ci.org/takahasi/docker-openrtm)
+
+[![Documentation by Read the Docs Status](https://readthedocs.org/projects/openrtm-on-docker/badge/?version=latest)](http://openrtm-on-docker.readthedocs.io/ja/latest/?badge=latest)
+
 
 # Usage
 If you try these images, just type the below;
