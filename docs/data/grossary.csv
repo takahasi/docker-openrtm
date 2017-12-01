@@ -1,3 +1,13 @@
 ID,用語,説明
 1,RTM,RTミドルウェアの略称
 2,RTC,RTコンポーネントの略称
+3,OpenRTM-aist,
+4,Docker,
+5,Dockerエンジン,
+6,DockerHub,
+7,GitHub,
+8,コンテナ,
+9,イメージ,
+10,ホストOS,
+11,ゲストOS,
+12,Kitematic

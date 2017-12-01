@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-openRTM on Docker
+OpenRTM on Docker
 =================
 
 .. list-table::
@@ -148,9 +148,6 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
 
 .. list-table:: 代表的なソフトウェアのライセンス
 
-  * -
-    -
-    -
   * - Docker Community Edition
     - Apache License 2.0
     - https://github.com/moby/moby/blob/master/LICENSE
@@ -178,8 +175,6 @@ OpenRTM-aist に関係するパッケージのインストールは一切必要�
   :header-rows: 0
   :stub-columns: 1
 
-  * -
-    -
   * - Windows
     - | Windows Server 2016 64bit（確認中）
       | Windows 10 64bit
@@ -244,9 +239,9 @@ Linux(Ubuntu)
 
 .. code-block:: sh
 
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm/master/scripts/docker-install.sh
-  $ chmod +x docker-install.sh
-  $ ./docker-install.sh
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
 
 Linux(Debian)
 ``````````````
@@ -266,6 +261,14 @@ Linux(Debian)
 2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
 3. https://docs.docker.com/engine/installation/linux/docker-ce/debian/ に詳細が記載されています
 
+また，下記ツールを利用すれば上記の手順を一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
+
 Linux(Fedora)
 ``````````````
 1. 下記のコマンドを順番にシェル上で実行します
@@ -281,6 +284,14 @@ Linux(Fedora)
 2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
 3. https://docs.docker.com/engine/installation/linux/docker-ce/fedora/  に詳細が記載されています
 
+また，下記ツールを利用すれば上記の手順を一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
+
 Linux(CentOS)
 ``````````````
 .. code-block:: sh
@@ -293,6 +304,16 @@ Linux(CentOS)
 
 2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
 3. https://docs.docker.com/engine/installation/linux/docker-ce/centos/  に詳細が記載されています
+
+Linux(Raspbian)
+````````````````
+下記ツールを利用すれば一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
 
 MacOSX
 ``````````````
@@ -317,23 +338,23 @@ OpenRTM on Docker Tools を利用する方法
 
 .. code-block:: sh
 
-  wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh
-  chmod +x rtｍdocker.sh
-  ./rtmdocker.sh
+  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/tools/rtmdocker.sh
+  $ chmod +x rtｍdocker.sh
+  $ ./rtmdocker.sh
 
 Docker コマンドで直接イメージを起動する方法 
 ```````````````````````````````````````````
 
 .. code-block:: sh
 
-  docker run --rm -ti takahasi/docker-openrtm bash
+  $ docker run --rm -ti takahasi/docker-openrtm bash
 
 Docker イメージのバージョンを指定し起動する方法
 `````````````````````````````````````````````````
 
 .. code-block:: sh
 
-  docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash
+  $ docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash
 
 Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズする方法
 ```````````````````````````````````````````````````````````````````
@@ -395,12 +416,11 @@ rtmdocker.sh はOpenRTM on Dockerイメージを起動するためのスクリ�
 '''''''''
 .. code-block:: sh
 
-  ./rtmdocker.sh [オプション] コマンド
+  $ ./rtmdocker.sh [オプション] コマンド
 
 コマンド
 ''''''''
 .. list-table:: rtmdocker.sh コマンド一覧
-  :header-rows: 0
   :stub-columns: 1
 
   * - openrtp
@@ -433,7 +453,6 @@ rtmdocker.sh はOpenRTM on Dockerイメージを起動するためのスクリ�
 オプション
 ''''''''''
 .. list-table::  rtmdocker.sh オプション一覧
-  :header-rows: 0
   :stub-columns: 1
 
   * - -h, --help
@@ -463,9 +482,27 @@ rtmdocker.sh はOpenRTM on Dockerイメージを起動するためのスクリ�
 6. FAQ
 =====================
 
-* 利用可能なPCのスペックは？
-* 動作性能は？
-* 利用ライセンスは？
-* 必要なスキルは？
-* バグを発見した場合には？
+利用可能なPCのスペックは？
+--------------------------
+調査中です
+
+動作性能は？
+------------
+測定中です
+
+利用ライセンスは？
+------------------
+本書の"4. 制約条件 ライセンス"をご確認下さい．
+
+OpenRTM on Docker を利用するために必要なスキルは？
+--------------------------------------------------
+CUI での操作が多いため，Linux 系OSの操作に慣れている必要があります．
+しかし，最近はKitematicなどのGUIツールでDockerを操作できるようになってきたため，CUI での操作機会は減っています．
+また，コンテナによる仮想化の概念を理解していると応用した利用ができます．
+
+バグを発見した場合には？
+-------------------------
+OpenRTM-aist プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，
+github https://github.com/takahasi/docker-openrtm に issue として登録していただければ対応します．
+また，github への pull request もお待ちしております．
 
