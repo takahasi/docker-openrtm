@@ -26,6 +26,8 @@
 #
 # needs_sphinx = '1.0'
 
+numfig = True
+
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -235,7 +237,7 @@ html_sidebars = {
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'swddoc'
+htmlhelp_basename = 'openrtm-docker'
 
 # -- Options for LaTeX output ---------------------------------------------
 
