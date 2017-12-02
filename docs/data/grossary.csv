@@ -1,13 +1,13 @@
 ID,用語,説明
 1,RTM,RTミドルウェアの略称
 2,RTC,RTコンポーネントの略称
-3,OpenRTM-aist,
-4,Docker,
-5,Dockerエンジン,
-6,DockerHub,
-7,GitHub,
-8,コンテナ,
-9,イメージ,
-10,ホストOS,
-11,ゲストOS,
-12,Kitematic
+3,OpenRTM-aist,産業技術総合研究所が主に開発を進めるRTミドルウエア規格に基づいたロボット向けミドルウエア．OSSとして公開されている．
+4,Docker,Docker.incが開発している軽量なコンテナ型アプリケーション実行環境．主にDocker EngineとDockerHubを含む．
+5,Docke Engine,Dockerの仮想コンテナ実行環境を示す．
+6,Docker Hub,Docker.incが運営する公式のDockerコンテナイメージを共有できるサービス．
+7,GitHub,Gitを利用したバージョン管理サービス．
+8,コンテナ,仮想化技術の一つ．仮想マシンに比べ，カーネルなどを共有できるため速度やメモリ・プロセッサ資源効率が高い．
+9,イメージ,コンテナを動作させる元となるバイナリデータ
+10,ホストOS,Docker Engine を起動する側のOS
+11,ゲストOS,Docker コンテナ上で動作するOS
+12,Kitematic,MacOSXやWindowsで利用できるDocker操作用のGUIアプリケーション
