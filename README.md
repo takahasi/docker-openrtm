@@ -39,8 +39,8 @@ http://www.openrtm.org/openrtm/
 # Dockerfile github
 https://github.com/takahasi/docker-openrtm
 
-# Web page
-[OpenRTM on Docker Web Page](https://takahasi.github.io/docker-openrtm/)
+# Document
+http://openrtm-on-docker.readthedocs.io/ja/latest/
 
 
 # Image List
