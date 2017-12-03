@@ -334,6 +334,117 @@ Linux(CentOS)
   $ sudo yum install docker-ce
   $ sudo systemctl start docker
 
+2. `sudo docker run hello-world` を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/centos/  に詳細が記載されています
+
+Linux(Raspbian)
+````````````````
+下記ツールを利用すれば一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
+
+MacOSX
+``````````````
+1. https://download.docker.com/mac/stable/Docker.dmg から Docker のディスクイメージ(Docker.dmg)をダウンロードします
+2. ダウンロードした Docker.dmg を実行し，Docker アイコンを Applications フォルダにドラッグ＆ドロップします
+3. インストールが開始され，成功後は Docker が常駐ソフトとして起動されます
+4. https://docs.docker.com/docker-for-mac/install/ に詳細が記載されています
+
+
+事前準備（Pythonのインストール）
+--------------------------------
+後述の OpenRTM on Docker Tools を利用するためにはPythonのインストールが別途必要となります．
+Docker コマンドを直接利用する場合はPythonのインストールは必要ありません．
+インストールするPythonのバージョンは2.x系，3.x系どちらでも構いません．
+
+Windows 
+`````````````` 
+1. https://www.python.org/downloads/windows/ から Python のインストーラ(Python-2.x.exeもしくはPython-3.x.exe)をダウンロードします
+2. ダウンロードした Pythonインストーラを実行します
+3. 環境変数に Python のパスを通すために，インストール中に表示される"Advanced Options" の"Add Python to environment variables"にチェックを入れて下さい
+4. インストールが正常に完了した場合，コマンドプロンプトから"python"と入力し，エラーが出ないことを確認して下さい
+
+Linux(Ubuntu)
+``````````````
+1. 下記のコマンドをシェル上で実行します
+
+.. code-block:: sh
+
+  $ sudo apt-get -y install python-dev
+
+2. python をシェル上で実行し，エラーが発生しなければインストール成功
+
+また，下記ツールを利用すれば上記の手順を一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
+
+Linux(Debian)
+``````````````
+1. 下記のコマンドを順番にシェル上で実行します
+
+.. code-block:: sh
+
+  $ sudo apt-get remove docker docker-engine docker.io
+  $ sudo apt-get update
+  $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
+  $ sudo apt-key fingerprint 0EBFCD88
+  $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+  $ sudo apt-get update
+  $ sudo apt-get install docker-ce
+
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/debian/ に詳細が記載されています
+
+また，下記ツールを利用すれば上記の手順を一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
+
+Linux(Fedora)
+``````````````
+1. 下記のコマンドを順番にシェル上で実行します
+
+.. code-block:: sh
+
+  $ sudo dnf remove docker docker-common docker-selinux docker-engine-selinux docker-engine
+  $ sudo dnf -y install dnf-plugins-core
+  $ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+  $ sudo dnf install docker-ce
+  $ sudo systemctl start docker
+
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
+3. https://docs.docker.com/engine/installation/linux/docker-ce/fedora/  に詳細が記載されています
+
+また，下記ツールを利用すれば上記の手順を一括で処理することができます．
+
+.. code-block:: sh
+
+  $ curl -fsSL get.docker.com -o get-docker.sh
+  $ chmod +x get-docker.sh
+  $ sh get-docker.sh
+
+Linux(CentOS)
+``````````````
+.. code-block:: sh
+
+  $ sudo yum remove docker docker-common docker-selinux docker-engine
+  $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+  $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  $ sudo yum install docker-ce
+  $ sudo systemctl start docker
+
 2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
 3. https://docs.docker.com/engine/installation/linux/docker-ce/centos/  に詳細が記載されています
 
@@ -364,10 +475,8 @@ Docker が既にインストールされている環境であれば OpenRTM on D
 
 OpenRTM on Docker Tools を利用する方法（推奨）
 ``````````````````````````````````````````````
-
-Linux，MacOSXの場合
-''''''''''''''''''''''''''''''''''''''''''''''''''''
-- rtmdocker.sh の詳細なオプションについては次節を参照下さい
+- 実行にはPythonが必要になります．インストール方法は前節のPythonインストール方法を参照ください
+- rtmdocker.py の詳細なオプションについては次節を参照下さい
 - タグを指定しない場合，最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます
@@ -375,28 +484,15 @@ Linux，MacOSXの場合
 
 .. code-block:: sh
 
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.sh
-  $ chmod +x rtmdocker.sh
-  $ ./rtmdocker.sh
+  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+  $ python rtmdocker.sh bash
 
 例えば，サンプルコンポーネントである ConsoleOutComp を動作させる場合，下記のように入力します．
 
 .. code-block:: sh
 
-  $ ./rtmdocker.sh ConsoleOut
+  $ python rtmdocker.py ConsoleOut
 
-Windowsの場合
-''''''''''''''''''''''''''''''''''''''''''''''''''''
-- https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.bat をダウンロード
-- rtmdocker.bat の詳細なオプションについては次節を参照下さい
-- タグを指定しない場合，最新の全パッケージ入り OpenRTM on Docker イメージを利用します
-- HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
-- シェルを抜けるとコンテナが消去されます
-- ネットワークはホストのネットワークデバイスを利用する設定となっているため，コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます
-
-.. code-block:: sh
-
-  $ rtmdocker.bat
 
 GUIアプリケーションを使う方法
 ````````````````````````````````````````````````````````
@@ -418,15 +514,13 @@ Xウィンドウを利用して接続する場合  (Linux/Mac ホストの場合
 
 .. code-block:: sh
 
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.sh
-  $ chmod +x rtmdocker.sh
-  $ ./rtmdocker.sh -x
+  $ python rtmdocker.sh -x bash
 
 例えば，OpenRTPを利用したい場合，下記のようなコマンドを入力することで起動できます．
 
 .. code-block:: sh
 
-  $ ./rtmdocker.sh -x openrtp
+  $ python rtmdocker.py -x openrtp
 
 
 Docker コマンドを直接利用する方法（中級者向け）
@@ -476,14 +570,12 @@ OpenRTM on Docker Tools とは，OpenRTM on Docker を実行するためのツ�
 .. list-table:: OpenRTM on Docker Toolsに含まれるツール
   :stub-columns: 1
 
-  * - rtmdocker.sh
-    - Linux/MacOSX向けOpenRTM on Dockerイメージ起動スクリプト
-  * - rtmdocker.bat
-    - Windows向けOpenRTM on Dockerイメージ起動スクリプト
+  * - rtmdocker.py
+    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ起動スクリプト
 
-rtmdocker.sh
+rtmdocker.py
 `````````````
-rtmdocker.sh はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
+rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
 起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
 ネットワークはホストのネットワークデバイスを利用する設定となっているため，
 コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
@@ -493,19 +585,18 @@ rtmdocker.sh はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
 
 .. code-block:: sh
 
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.sh
-  $ chmod +x rtmdocker.sh
+  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
 
 
 使用方法
 '''''''''
 .. code-block:: sh
 
-  $ ./rtmdocker.sh [オプション] コマンド
+  $ python rtmdocker.py [オプション] コマンド
 
 コマンド
 ''''''''
-.. list-table:: rtmdocker.sh コマンド一覧
+.. list-table:: rtmdocker.py コマンド一覧
   :stub-columns: 1
 
   * - openrtp
@@ -553,7 +644,7 @@ rtmdocker.sh はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
 
 オプション
 ''''''''''
-.. list-table::  rtmdocker.sh オプション一覧
+.. list-table::  rtmdocker.py オプション一覧
   :stub-columns: 1
 
   * - -h, --help
@@ -571,75 +662,6 @@ rtmdocker.sh はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
   * - -x, --xforward
     - X-forwarding を有効にする
 
-rtmdocker.bat
-`````````````
-rtmdocker.bat はWindows向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
-起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
-ネットワークはホストのネットワークデバイスを利用する設定となっているため，
-コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
-
-ダウンロード方法
-''''''''''''''''
-https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.bat をダウンロード
-
-
-使用方法
-'''''''''
-DOSプロンプトでrtmdocker.batをダウンロードしたフォルダに移動し，下記を実行します．
-
-.. code-block:: sh
-
-  $ rtmdocker.bat [オプション] コマンド
-
-コマンド
-''''''''
-.. list-table:: rtmdocker.bat コマンド一覧
-  :stub-columns: 1
-
-  * - bash
-    - bash を起動する
-  * - Composite
-    - C++ サンプルコンポーネント "Composite" を起動する
-  * - ConsigSample
-    - C++ サンプルコンポーネント "ConsigSampleComp" を起動する
-  * - ConsoleIn
-    - C++ サンプルコンポーネント "ConsoleInComp" を起動する
-  * - ConsoleOut
-    - C++ サンプルコンポーネント "ConsoleOutComp" を起動する
-  * - Controller
-    - C++ サンプルコンポーネント "ControllerComp" を起動する
-  * - Motor
-    - C++ サンプルコンポーネント "MotorComp" を起動する
-  * - SeqIn
-    - C++ サンプルコンポーネント "SeqInComp" を起動する
-  * - SeqOut
-    - C++ サンプルコンポーネント "SeqOutComp" を起動する
-  * - MyServiceConsumer
-    - C++ サンプルコンポーネント "SeqOutComp" を起動する
-  * - MyServiceProvider
-    - C++ サンプルコンポーネント "SeqOutComp" を起動する
-  * - Sensor
-    - C++ サンプルコンポーネント "SensorComp" を起動する
-
-オプション
-''''''''''
-.. list-table::  rtmdocker.bat オプション一覧
-  :stub-columns: 1
-
-  * - -h, --help
-    - ヘルプメッセージを表示する
-  * - -v, --version
-    - ツールのバージョンを表示する
-  * - -n, --nameserver
-    - コマンド実行前にネームサーバーを起動する
-  * - -t, --tag TAGNAME
-    - 使用するDockerイメージのタグを指定する
-  * - -r, --run COMPONENT
-    - 指定したコンポーネントをDockerコンテナ内で起動する
-  * - -c, --compile [ARG]
-    - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
-  * - -x, --xforward
-    - X-forwarding を有効にする
 
 
 利用できるイメージ（タグ名）
