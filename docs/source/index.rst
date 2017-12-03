@@ -334,7 +334,7 @@ Linux(CentOS)
   $ sudo yum install docker-ce
   $ sudo systemctl start docker
 
-2. `sudo docker run hello-world` を実行し，エラーが発生しなければインストール成功
+2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
 3. https://docs.docker.com/engine/installation/linux/docker-ce/centos/  に詳細が記載されています
 
 Linux(Raspbian)
@@ -370,100 +370,75 @@ Windows
 
 Linux(Ubuntu)
 ``````````````
+Ubuntuではデフォルトでpythonがインストールされています．もしインストールされていない場合は下記コマンドでインストールできます．
+
 1. 下記のコマンドをシェル上で実行します
 
 .. code-block:: sh
 
-  $ sudo apt-get -y install python-dev
+  $ sudo apt-get -y install python
 
 2. python をシェル上で実行し，エラーが発生しなければインストール成功
 
-また，下記ツールを利用すれば上記の手順を一括で処理することができます．
-
-.. code-block:: sh
-
-  $ curl -fsSL get.docker.com -o get-docker.sh
-  $ chmod +x get-docker.sh
-  $ sh get-docker.sh
 
 Linux(Debian)
 ``````````````
-1. 下記のコマンドを順番にシェル上で実行します
+Debianではデフォルトでpythonがインストールされています．もしインストールされていない場合は下記コマンドでインストールできます．
+
+1. 下記のコマンドをシェル上で実行します
 
 .. code-block:: sh
 
-  $ sudo apt-get remove docker docker-engine docker.io
-  $ sudo apt-get update
-  $ sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-  $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
-  $ sudo apt-key fingerprint 0EBFCD88
-  $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
-  $ sudo apt-get update
-  $ sudo apt-get install docker-ce
+  $ sudo apt-get -y install python
 
-2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
-3. https://docs.docker.com/engine/installation/linux/docker-ce/debian/ に詳細が記載されています
+2. python をシェル上で実行し，エラーが発生しなければインストール成功
 
-また，下記ツールを利用すれば上記の手順を一括で処理することができます．
-
-.. code-block:: sh
-
-  $ curl -fsSL get.docker.com -o get-docker.sh
-  $ chmod +x get-docker.sh
-  $ sh get-docker.sh
 
 Linux(Fedora)
 ``````````````
-1. 下記のコマンドを順番にシェル上で実行します
+Fedoraではデフォルトでpythonがインストールされています．もしインストールされていない場合は下記コマンドでインストールできます．
+
+1. 下記のコマンドをシェル上で実行します
 
 .. code-block:: sh
 
-  $ sudo dnf remove docker docker-common docker-selinux docker-engine-selinux docker-engine
-  $ sudo dnf -y install dnf-plugins-core
-  $ sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-  $ sudo dnf install docker-ce
-  $ sudo systemctl start docker
+  $ sudo dnf -y install python
 
-2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
-3. https://docs.docker.com/engine/installation/linux/docker-ce/fedora/  に詳細が記載されています
+2. python をシェル上で実行し，エラーが発生しなければインストール成功
 
-また，下記ツールを利用すれば上記の手順を一括で処理することができます．
-
-.. code-block:: sh
-
-  $ curl -fsSL get.docker.com -o get-docker.sh
-  $ chmod +x get-docker.sh
-  $ sh get-docker.sh
 
 Linux(CentOS)
 ``````````````
+CentOSではデフォルトでpythonがインストールされています．もしインストールされていない場合は下記コマンドでインストールできます．
+
+1. 下記のコマンドをシェル上で実行します
+
 .. code-block:: sh
 
-  $ sudo yum remove docker docker-common docker-selinux docker-engine
-  $ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-  $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  $ sudo yum install docker-ce
-  $ sudo systemctl start docker
+  $ sudo yum -y install python
 
-2. sudo docker run hello-world を実行し，エラーが発生しなければインストール成功
-3. https://docs.docker.com/engine/installation/linux/docker-ce/centos/  に詳細が記載されています
+2. python をシェル上で実行し，エラーが発生しなければインストール成功
 
 Linux(Raspbian)
 ````````````````
-下記ツールを利用すれば一括で処理することができます．
+Raspbianではデフォルトでpythonがインストールされています．もしインストールされていない場合は下記コマンドでインストールできます．
+
+1. 下記のコマンドをシェル上で実行します
 
 .. code-block:: sh
 
-  $ curl -fsSL get.docker.com -o get-docker.sh
-  $ chmod +x get-docker.sh
-  $ sh get-docker.sh
+  $ sudo apt-get -y install python
+
+2. python をシェル上で実行し，エラーが発生しなければインストール成功
+
 
 MacOSX
 ``````````````
-1. https://download.docker.com/mac/stable/Docker.dmg から Docker のディスクイメージ(Docker.dmg)をダウンロードします
-2. ダウンロードした Docker.dmg を実行し，Docker アイコンを Applications フォルダにドラッグ＆ドロップします
-3. インストールが開始され，成功後は Docker が常駐ソフトとして起動されます
-4. https://docs.docker.com/docker-for-mac/install/ に詳細が記載されています
+MacOSXではデフォルトでpythonがインストールされています．もしインストールされていない場合は下記手順でインストールできます．
+
+1. https://www.python.org/downloads/mac-osx/ から Python のインストーラ(Python-2.x.pkgもしくはPython-3.x.pkg)をダウンロードします
+2. ダウンロードした Pythonインストーラを実行します
+3. インストールが正常に完了した場合，ターミナルから"python"と入力し，エラーが出ないことを確認して下さい
 
 
 OpenRTM on Docker 利用方法
