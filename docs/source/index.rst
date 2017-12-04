@@ -64,6 +64,7 @@ Docker のインストール方法，OpenRTM on Dockerのイメージ一覧，�
 -------------
 
 本書はOpenRTM on Dockerを利用しているユーザ，および利用を検討している方に向けたドキュメントです．
+内容はOpenRTM on Dockerの設計書，ユーザマニュアルを含んでいます．
 
 1.3. 対象ユーザ
 ------------------
@@ -210,17 +211,17 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
 .. list-table:: 代表的なソフトウェアのライセンス
 
   * - Docker Community Edition
-    - Apache License 2.0
+    - | Apache License 2.0
     - https://github.com/moby/moby/blob/master/LICENSE
   * - Docker Components
-    - 右記参照
+    - | 右記参照
     - https://www.docker.com/components-licenses
   * - OpenRTM-aist
     - | OpenRTM-aist (C++、Java、Python版)は LGPL と個別契約のデュアルライセンス
       | RTSystemEditor、RTCBuilder は EPL と個別契約のデュアルライセンス
     - http://openrtm.org/openrtm/ja/content/openrtm-aist%E3%81%A8%E3%81%AF%EF%BC%9F-0
   * - OpenRTM on Docker
-    - MIT License
+    - | MIT License
     - https://github.com/takahasi/docker-openrtm/blob/master/LICENSE
 
 5. 使用方法
@@ -460,7 +461,7 @@ OpenRTM on Docker Tools を利用する方法（推奨）
 .. code-block:: sh
 
   $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
-  $ python rtmdocker.sh bash
+  $ python rtmdocker.py bash
 
 例えば，サンプルコンポーネントである ConsoleOutComp を動作させる場合，下記のように入力します．
 
@@ -489,7 +490,7 @@ Xウィンドウを利用して接続する場合  (Linux/Mac ホストの場合
 
 .. code-block:: sh
 
-  $ python rtmdocker.sh -x bash
+  $ python rtmdocker.py -x bash
 
 例えば，OpenRTPを利用したい場合，下記のようなコマンドを入力することで起動できます．
 
