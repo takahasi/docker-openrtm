@@ -637,7 +637,7 @@ rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
   * - -x, --xforward
     - X-forwarding を有効にする
 
-
+.. _images:
 
 利用できるイメージ（タグ名）
 ----------------------------
@@ -655,7 +655,7 @@ OpenRTM on Docker で利用できるイメージ一覧です．
 
 利用可能なPCのスペックは？
 --------------------------
-ホストOSの種別については本書の :ref:`4. 制約条件 動作環境<environment>` をご確認下さい．
+ホストOSの種別については本書の :ref:`制約条件 動作環境<environment>` をご確認下さい．
 CPUクロックやメモリ要件については調査中です．
 
 動作性能は？
@@ -664,7 +664,16 @@ CPUクロックやメモリ要件については調査中です．
 
 利用ライセンスは？
 ------------------
-本書の :ref:`4. 制約条件 ライセンス<license>` をご確認下さい．
+本書の :ref:`制約条件 ライセンス<license>` をご確認下さい．
+
+利用可能なゲストOSは？
+------------------
+主要なLinuxディストリビューションである Ubuntu，Debian，Fedora を利用できるようにしてます．
+各バージョンについては本書の :ref:`利用できるイメージ<images>` をご確認下さい．
+
+現在，Docker自体はWindowsゲストOSが利用可能な拡張も存在しているのですが，
+まだ動作が不安定であることとCUIのみでのOpenRTM-aistパッケージのインストールが難しいことから対応を見送っています．
+対応要望がありましたらRTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応しますので，お知らせ下さい．
 
 OpenRTM on Docker を利用するために必要なスキルは？
 --------------------------------------------------
