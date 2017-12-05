@@ -690,15 +690,15 @@ Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズ
 
   FROM takahasi/docker-openrtm:ubuntu1404_openrtm112
   
-  COPY MyComponent /usr/local/bin/
+  COPY MyComponent /usr/bin/
   CMD ["MyComponent", ""]
 
 上記を Dockerfile というファイル名で保存し，下記の様に入力することでカスタムイメージのビルド，実行ができます．
 
 .. code-block:: sh
 
-  $ docker build ./ -t my_component_image
-  $ docker run my_component_image
+  $ docker build --network=host -t my_component_image .
+  $ docker run --network=host -it my_component_image
 
 7. FAQ
 =====================
