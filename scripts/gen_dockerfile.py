@@ -30,9 +30,11 @@ EXPOSE 80
 dockerfile_template_12x_all_desktop = '''
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \\
-    apt-get install -y lxde xrdp && \\
+    apt-get install -y lxde xrdp sysv-rc-conf && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
+    echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
+    sysv-rc-conf xrdp on && \\
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]
@@ -71,7 +73,7 @@ dockerfile_template_11x_all_desktop = '''
 RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
     apt-get install -y python-pip && \\
     apt-get install -y default-jre && \\
-    apt-get install -y lxde xrdp && \\
+    apt-get install -y lxde xrdp sysv-rc-conf && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
     chmod a+x pkg_install_{dist}.sh && sync && \\
     ./pkg_install_{dist}.sh -c && \\
@@ -86,6 +88,8 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
+    echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
+    sysv-rc-conf xrdp on && \\
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]
@@ -126,6 +130,7 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     ./pkg_install_python_{dist}.sh -y
 '''
 
+
 class DockerImage:
     def __init__(self, t, i, a, rv):
         self._type = t
@@ -147,7 +152,7 @@ class DockerImage:
             suffix = '-openrtm-java-'
         elif self._type == 'all':
             suffix = '-openrtm'
-        else: # all+desktop
+        else:  # all+desktop
             suffix = '-openrtm-desktop'
         self._top_path = dist + suffix + self._rtm_ver_major + self._rtm_ver_minor + self._rtm_ver_rev
 
@@ -161,7 +166,7 @@ class DockerImage:
             m += dockerfile_template_11x_all
         elif self._type == 'all':
             m += dockerfile_template_11x_all
-        else: # all+desktop
+        else:  # all+desktop
             m += dockerfile_template_11x_all_desktop
 
         m += dockerfile_template_common_footer
@@ -177,7 +182,7 @@ class DockerImage:
             m += dockerfile_template_12x_java
         elif self._type == 'all':
             m += dockerfile_template_12x_all
-        else: # all+desktop
+        else:  # all+desktop
             m += dockerfile_template_12x_all_desktop
 
         m += dockerfile_template_common_footer
@@ -212,7 +217,7 @@ class DockerImage:
         f.close()
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
 
     version = [
         "1.1.2",

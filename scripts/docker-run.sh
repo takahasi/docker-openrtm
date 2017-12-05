@@ -3,19 +3,18 @@
 set -e
 
 # TAG NAME
-# tag=ubuntu1604_openrtm112-desktop
-tag=$1
+if [ $1=="" ];then
+  tag="latest"
+else
+  tag=$1
+fi
 
 # Docker Hub Image
 DH_USER=takahasi
 DH_REPO=docker-openrtm
 
-if [ $tag=="" ];then
-  image=$DH_USER/$DH_REPO
-else
-  image=$DH_USER/$DH_REPO:$tag
-fi
-echo "IMAGE: $tag"
+image=$DH_USER/$DH_REPO:$tag
+echo "IMAGE: $image"
 
 # Docker Option
 entry=$PWD
