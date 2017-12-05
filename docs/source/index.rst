@@ -156,6 +156,8 @@ OpenRTM on Docker を用いて，OpenRTM-aist がインストールされてい�
 4. 機能詳細
 ==================
 
+.. _rtmdocker:
+
 4.1 OpenRTM on Docker Tools
 ----------------------------------
 OpenRTM on Docker Tools とは，OpenRTM on Docker を実行するためのツール群です．
@@ -569,7 +571,7 @@ Docker が既にインストールされている環境であれば OpenRTM on D
 OpenRTM on Docker Tools を利用する方法（推奨）
 ``````````````````````````````````````````````
 - 実行にはPythonが必要になります．インストール方法は前節のPythonインストール方法を参照ください
-- rtmdocker.py の詳細なオプションについては次節を参照下さい
+- rtmdocker.py の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは`python rtmdocker.py --help` で出力される内容を参照下さい
 - タグを指定しない場合，最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます
@@ -590,20 +592,36 @@ OpenRTM on Docker Tools を利用する方法（推奨）
 GUIアプリケーションを使う方法
 ````````````````````````````````````````````````````````
 
-リモートデスクトッププロトコル(RDP)で接続する場合
+リモートデスクトッププロトコル(RDP)で接続
 ''''''''''''''''''''''''''''''''''''''''''''''''''''
-
 RDP（Remote Desktop Protocol）サーバがインストールされたイメージを利用している場合，
-リモートデスクトップクライアントをホストにインストールし，
+リモートデスクトップクライアントをホストOSにインストールし，
 リモートデスクトップクライアントからローカルホストに対して接続することで，
 OpenRTM on Dockerコンテナ内のデスクトップ画面を表示することができます．
+接続前にはかならずOpenRTM on Dockerコンテナを起動しておいて下さい．
 
-* ユーザ名:root
-* パスワード:root
+Windows の場合，リモートデスクトップクライアントは標準インストールされています．
+「リモートデスクトップ接続」というアプリケーションを実行し，IPアドレス（標準では 10.0.75.2）を入力後，
+下記のユーザ名，パスワードを入力することでデスクトップ画面が表示できます．
+
+Linux の場合，リモートデスクトップクライアント(remmina など)を別途インストールする必要があります．
+クライアントアプリケーションを実行し，IPアドレス（標準ではネットワークをホストOSと共有するので127.0.0.1）を入力後，
+下記のユーザ名，パスワードを入力することでデスクトップ画面が表示できます．
+
+* プロトコル: RDP （Windowsの場合: Xorg， Linux の場合: sesman-x11rdp など）
+* ユーザ名: root
+* パスワード: root
 
 
-Xウィンドウを利用して接続する場合  (Linux/Mac ホストの場合) :  
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Xウィンドウを利用して接続
+''''''''''''''''''''''''''''''''''''
+ホストOSにX Window Systemがインストールされていれば，X Window の転送によってコンテナ内のアプリケーションを表示することができます．
+Linux であれば標準で X Windows Systemに対応しています．
+Windows の場合は Xming http://www.straightrunning.com/XmingNotes/ などを，
+McOSX の場合は XQuartz https://www.xquartz.org/ などを別途インストールしておく必要があります．
+
+-x オプションをつけて rtmdocker.py を実行して下さい．
 
 .. code-block:: sh
 
@@ -618,24 +636,24 @@ Xウィンドウを利用して接続する場合  (Linux/Mac ホストの場合
 
 Docker コマンドを直接利用する方法（中級者向け）
 ````````````````````````````````````````````````````````
-Docker コマンドで直接イメージを起動する方法 
+Docker コマンドで直接イメージを起動
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 .. code-block:: sh
 
   $ docker run --rm -ti takahasi/docker-openrtm bash
 
-Docker イメージのバージョンを指定し起動する方法
+Docker イメージのバージョンを指定し起動
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 .. code-block:: sh
 
   $ docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash
 
-Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズする方法
+Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズ
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-下記を Dockerfile に記載することで，ベースとなるOpenRTM on  Docker イメージを利用できます．: 
+下記を Dockerfile に記載することで，既存のOpenRTM on Docker イメージをベースにカスタマイズすることができます．
 
 .. code-block:: sh
 
@@ -643,7 +661,7 @@ Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズする�
 
 
 例えば，自作したコンポーネントを起動時に動作させるためには，
-下記のような Dockerfile を作成することでカスタムイメージを作成できます．: 
+下記のような Dockerfile を作成することでカスタムイメージを作成できます．
 
 .. code-block:: sh
 
@@ -652,6 +670,12 @@ Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズする�
   COPY MyComponent /usr/local/bin/
   CMD ["MyComponent", ""]
 
+上記を Dockerfile というファイル名で保存し，下記の様に入力することでカスタムイメージのビルド，実行ができます．
+
+.. code-block:: sh
+
+  $ docker build ./ -t my_component_image
+  $ docker run my_component_image
 
 7. FAQ
 =====================
