@@ -702,23 +702,47 @@ Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズ
   $ docker build --network=host -t my_component_image .
   $ docker run --network=host -it my_component_image
 
-7. FAQ
+
+7. 応用例・ベストプラクティス
+==============================
+本節ではOpenRTM on Dockerの応用例やベストプラクティスについて述べます．
+新しい事例を随時追加する予定です．
+
+7.1 依存ライブラリのあるコンポーネントのパッケージング
+-------------------------------------------------------
+ImageToObjectPredictionコンポーネントは深層学習を用いて物体認識を行うコンポーネントです．
+深層学習フレームワークであるchainerやコンピュータビジョン向けライブラリであるopencv-pythonを利用しているため，
+このコンポーネントを使用するためには依存ライブラリのインストールが不可欠でした．
+そこでOpenRTM on Dockerを利用しコンポーネントと依存ライブラリをイメージ化しました．
+イメージを起動するとコンポーネントも自動起動されるので，コンテナ＝コンポーネントとして使用できます．
+
+https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/ImageToObjectPrediction
+
+7.2 サンプルコンポーネント群の起動
+-------------------------------------------------------
+OpenRTM-aist含まれるサンプルコンポーネント群を自動起動するイメージを作成しました．
+ちょっとした動作確認に利用できます．
+
+https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/StartAllExamples
+
+
+8. FAQ
 =====================
 
-7.1 利用可能なPCのスペックは？
+8.1 利用可能なPCのスペックは？
 ------------------------------
 ホストOSの種別については本書の :ref:`制約条件 動作環境<environment>` をご確認下さい．
 CPUクロックやメモリ要件については調査中です．
 
-7.2 動作性能は？
+8.2 動作性能は？
 -----------------
 測定中です．
 
-7.3 利用ライセンスは？
+8.3 利用ライセンスは？
 ----------------------
 本書の :ref:`制約条件 ライセンス<license>` をご確認下さい．
 
-7.4 利用可能なゲストOSは？
+8.4 利用可能なゲストOSは？
 --------------------------
 主要なLinuxディストリビューションである Ubuntu，Debian，Fedora を利用できるようにしてます．
 各バージョンについては本書の :ref:`利用できるイメージ<images>` をご確認下さい．
@@ -727,20 +751,20 @@ CPUクロックやメモリ要件については調査中です．
 まだ動作が不安定であることとCUIのみでのOpenRTM-aistパッケージのインストールが難しいことから対応を見送っています．
 対応要望がありましたらRTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応しますので，お知らせ下さい．
 
-7.5 利用するために必要なスキルは？
+8.5 利用するために必要なスキルは？
 --------------------------------------------------
 CUI での操作が多いため，Linux 系OSの操作に慣れている必要があります．
 しかし，最近はKitematicなどのGUIツールでDockerを操作できるようになってきたため，CUI での操作機会は減っています．
 また，コンテナによる仮想化の概念を理解していると応用した利用ができます．
 
-7.6 バグを発見した場合には？
+8.6 バグを発見した場合には？
 -----------------------------
 OpenRTM-aist RTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，
 GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応します．
 また，上記GitHub への pull request もお待ちしております．
 
 
-8. 今後の改善予定
+9. 今後の改善予定
 =====================
 
 .. list-table:: 今後の改善予定
@@ -751,10 +775,12 @@ GitHubページ https://github.com/takahasi/docker-openrtm または https://git
   * - Windows RTM コンテナ環境の構築
     - 現状 CUI しか使えないためOpenRTM-aistインストーラがサイレントインストールに対応する必要あり
   * - コンテナ環境を利用したRTCテストツールの開発
-    - 構想のみ
+    - 構想段階
   * - コンテナ環境を利用したパッケージツールの開発
-    - 構想のみ
+    - 構想段階
   * - コンテナイメージの整理
     - 数が多過ぎるため，あまり使わない組み合わせを整理すべき
   * - OpenRTM on Docker を Docker Hub 公式レポジトリにする
     - 公式レポジトリにすることでユーザを誘導しやすい
+  * - 応用例・ベストプラクティスの拡充
+    - ユーザからのコメントを受けられる仕組みの構築
