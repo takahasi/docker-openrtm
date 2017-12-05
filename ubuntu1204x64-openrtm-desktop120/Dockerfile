@@ -10,11 +10,10 @@ RUN set -x && apt-get update -qq
 
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \
-    apt-get install -y lxde xrdp sysv-rc-conf && \
+    apt-get install -y lxde xrdp && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \
-    sysv-rc-conf xrdp on && \
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]

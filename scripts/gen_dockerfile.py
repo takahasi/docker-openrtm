@@ -30,11 +30,10 @@ EXPOSE 80
 dockerfile_template_12x_all_desktop = '''
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \\
-    apt-get install -y lxde xrdp sysv-rc-conf && \\
+    apt-get install -y lxde xrdp && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
-    sysv-rc-conf xrdp on && \\
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]
@@ -73,7 +72,7 @@ dockerfile_template_11x_all_desktop = '''
 RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
     apt-get install -y python-pip && \\
     apt-get install -y default-jre && \\
-    apt-get install -y lxde xrdp sysv-rc-conf && \\
+    apt-get install -y lxde xrdp && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
     chmod a+x pkg_install_{dist}.sh && sync && \\
     ./pkg_install_{dist}.sh -c && \\
@@ -89,7 +88,6 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
-    sysv-rc-conf xrdp on && \\
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]

@@ -11,7 +11,7 @@ RUN set -x && apt-get update -qq
 RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \
     apt-get install -y python-pip && \
     apt-get install -y default-jre && \
-    apt-get install -y lxde xrdp sysv-rc-conf && \
+    apt-get install -y lxde xrdp && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_ubuntu.sh && \
     chmod a+x pkg_install_ubuntu.sh && sync && \
     ./pkg_install_ubuntu.sh -c && \
@@ -27,7 +27,6 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     ln -s /eclipse/openrtp /usr/bin/ && \
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \
-    sysv-rc-conf xrdp on && \
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]
