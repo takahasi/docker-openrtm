@@ -118,8 +118,8 @@ OpenRTM on Dockerに含まれるDockerイメージははDocker Engine上で動�
 3. 機能概要
 ==================
 
-OpenRTM on Dockerを利用して実現できること
-------------------------------------------
+3.1 OpenRTM on Dockerを利用して実現できること
+---------------------------------------------
 - OpenRTM-aist をホストOSにインストールせずに利用することができる
  - OpenRTPやサンプルコンポーネントをホストPCにインストールせずに起動できる
 - 様々なバージョンのOpenRTM-aistを利用したコンパイルや動作確認ができる
@@ -133,17 +133,7 @@ OpenRTM on Dockerを利用して実現できること
     - .. image:: ../img/sample2.png
         :width: 100%
 
-
-OpenRTM on Dockerを利用した際の画面例
-------------------------------------------
-OpenRTM on Docker を用いて，OpenRTM-aist がインストールされていない Linux 環境で NameServer，OprenRTP，サンプルコンポーネント（ConsoleIn，ConsoleOut）を接続した画面例を下記に示します．
-
-.. image:: ../img/screen.png
-  :width: 70%
-  :align: center
-
-
-OpenRTM on Dockerイメージの管理方法
+3.2 OpenRTM on Dockerイメージの管理方法
 ------------------------------------------
 OpenRTM-aistやOSのバージョン，プログラミング言語などの組み合わせ数が多いため，
 Dockerイメージを作成するためのDockerfileをスクリプトで自動生成し，GitHubに登録しました．
@@ -154,13 +144,140 @@ Dockerイメージを作成するためのDockerfileをスクリプトで自動�
   :width: 70%
   :align: center
 
+3.3 OpenRTM on Dockerを利用した際の画面例
+--------------------------------------------
+OpenRTM on Docker を用いて，OpenRTM-aist がインストールされていない Linux 環境で NameServer，OprenRTP，サンプルコンポーネント（ConsoleIn，ConsoleOut）を接続した画面例を下記に示します．
 
-4. 制約条件
+.. image:: ../img/screen.png
+  :width: 70%
+  :align: center
+
+
+4. 機能詳細
+==================
+
+4.1 OpenRTM on Docker Tools
+----------------------------------
+OpenRTM on Docker Tools とは，OpenRTM on Docker を実行するためのツール群です．
+
+現在下記のツールが利用可能です．
+詳細オプションについては後述します．
+
+.. list-table:: OpenRTM on Docker Toolsに含まれるツール
+  :stub-columns: 1
+
+  * - rtmdocker.py
+    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ起動スクリプト
+
+rtmdocker.py
+`````````````
+rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
+起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
+ネットワークはホストのネットワークデバイスを利用する設定となっているため，
+コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
+
+ダウンロード方法
+''''''''''''''''
+
+.. code-block:: sh
+
+  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+
+
+使用方法
+'''''''''
+.. code-block:: sh
+
+  $ python rtmdocker.py [オプション] コマンド
+
+コマンド
+''''''''
+.. list-table:: rtmdocker.py コマンド一覧
+  :stub-columns: 1
+
+  * - openrtp
+    - OpenRTP を起動する
+  * - bash
+    - bash を起動する
+  * - Composite
+    - C++ サンプルコンポーネント "Composite" を起動する
+  * - ConsigSample
+    - C++ サンプルコンポーネント "ConsigSampleComp" を起動する
+  * - ConsoleIn
+    - C++ サンプルコンポーネント "ConsoleInComp" を起動する
+  * - ConsoleInPy
+    - Python サンプルコンポーネント "ConsoleInComp" を起動する
+  * - ConsoleOut
+    - C++ サンプルコンポーネント "ConsoleOutComp" を起動する
+  * - ConsoleOutPy
+    - Python サンプルコンポーネント "ConsoleOutComp" を起動する
+  * - Controller
+    - C++ サンプルコンポーネント "ControllerComp" を起動する
+  * - Motor
+    - C++ サンプルコンポーネント "MotorComp" を起動する
+  * - SeqIn
+    - C++ サンプルコンポーネント "SeqInComp" を起動する
+  * - SeqInPy
+    - Python サンプルコンポーネント "SeqInComp" を起動する
+  * - SeqOut
+    - C++ サンプルコンポーネント "SeqOutComp" を起動する
+  * - SeqOutPy
+    - Python サンプルコンポーネント "SeqOutComp" を起動する
+  * - TkJoyStick
+    - Python サンプルコンポーネント "TkJoyStick" を起動する
+  * - TkLRFViewer
+    - Python サンプルコンポーネント "TkLRFViewer" を起動する
+  * - MyServiceConsumer
+    - C++ サンプルコンポーネント "MyServiceConsumer" を起動する
+  * - MyServiceConsumerPy
+    - Python サンプルコンポーネント "MyServiceConsumer" を起動する
+  * - MyServiceProvider
+    - C++ サンプルコンポーネント "MyServiceProvider" を起動する
+  * - MyServiceProviderPy
+    - Python サンプルコンポーネント "MyServiceProvider" を起動する
+  * - Sensor
+    - C++ サンプルコンポーネント "SensorComp" を起動する
+
+オプション
+''''''''''
+.. list-table::  rtmdocker.py オプション一覧
+  :stub-columns: 1
+
+  * - -h, --help
+    - ヘルプメッセージを表示する
+  * - -v, --version
+    - ツールのバージョンを表示する
+  * - -n, --nameserver
+    - コマンド実行前にネームサーバーを起動する
+  * - -t, --tag TAGNAME
+    - 使用するDockerイメージのタグを指定する
+  * - -r, --run COMPONENT
+    - 指定したコンポーネントをDockerコンテナ内で起動する
+  * - -c, --compile [ARG]
+    - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
+  * - -x, --xforward
+    - X-forwarding を有効にする
+
+.. _images:
+
+4.2 利用できるイメージ（タグ名）
+--------------------------------
+OpenRTM on Docker で利用できるイメージ一覧です．
+起動時にタグ指定することで切換えられます（指定しない場合はlatestが選択されます）．
+最新の状況についてはhttps://hub.docker.com/r/takahasi/docker-openrtm/をご確認ください
+
+.. csv-table:: 利用できるイメージ一覧
+  :header-rows: 1
+  :widths: 6, 4, 3, 2, 2, 2, 2, 2, 3
+  :file: ../data/images.csv
+
+
+5. 制約条件
 ==================
 
 .. _environment:
 
-動作環境
+5.1 動作環境
 -----------------------------
 現在 OpenRTM on Docker の動作が確認できているのは下記のホストOSです．
 Dockerの仕様上，64bit OSしかサポートしていません．
@@ -197,7 +314,7 @@ Dockerの仕様上，64bit OSしかサポートしていません．
 
 .. _license:
 
-ライセンス
+5.2 ライセンス
 -----------------------------
 OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセンスにより配布されます．
 しかし，OpenRTM on Docker イメージに含まれるOSおよび周辺ソフトウェア，OpenRTM-aistのライセンスは別です．
@@ -224,10 +341,10 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
     - | MIT License
     - https://github.com/takahasi/docker-openrtm/blob/master/LICENSE
 
-5. 使用方法
+6. 使用方法
 ==================
 
-事前準備（Dockerのインストール）
+6.1 事前準備（Dockerのインストール）
 --------------------------------
 インストールする必要があるのは Docker とその依存パッケージのみです．
 OpenRTM-aist に関係するパッケージのインストールは一切必要ありません．
@@ -356,8 +473,8 @@ MacOSX
 4. https://docs.docker.com/docker-for-mac/install/ に詳細が記載されています
 
 
-事前準備（Pythonのインストール）
---------------------------------
+6.2 事前準備（Pythonのインストール）
+------------------------------------
 後述の OpenRTM on Docker Tools を利用するためにはPythonのインストールが別途必要となります．
 Docker コマンドを直接利用する場合はPythonのインストールは必要ありません．
 インストールするPythonのバージョンは2.x系，3.x系どちらでも構いません．
@@ -442,7 +559,7 @@ MacOSXではデフォルトでpythonがインストールされています．�
 3. インストールが正常に完了した場合，ターミナルから"python"と入力し，エラーが出ないことを確認して下さい
 
 
-OpenRTM on Docker 利用方法
+6.3 基本的な使用方法
 --------------------------
 Docker が既にインストールされている環境であれば OpenRTM on Docker が利用できます．  
 イメージをダウンロードしてキャッシュするため，初回起動時は外部ネットワークに接続されている必要があり，  
@@ -536,139 +653,24 @@ Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズする�
   CMD ["MyComponent", ""]
 
 
-OpenRTM on Docker Tools
-----------------------------------
-OpenRTM on Docker Tools とは，OpenRTM on Docker を実行するためのツール群です．
-
-現在下記のツールが利用可能です．
-詳細オプションについては後述します．
-
-.. list-table:: OpenRTM on Docker Toolsに含まれるツール
-  :stub-columns: 1
-
-  * - rtmdocker.py
-    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ起動スクリプト
-
-rtmdocker.py
-`````````````
-rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
-起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
-ネットワークはホストのネットワークデバイスを利用する設定となっているため，
-コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
-
-ダウンロード方法
-''''''''''''''''
-
-.. code-block:: sh
-
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
-
-
-使用方法
-'''''''''
-.. code-block:: sh
-
-  $ python rtmdocker.py [オプション] コマンド
-
-コマンド
-''''''''
-.. list-table:: rtmdocker.py コマンド一覧
-  :stub-columns: 1
-
-  * - openrtp
-    - OpenRTP を起動する
-  * - bash
-    - bash を起動する
-  * - Composite
-    - C++ サンプルコンポーネント "Composite" を起動する
-  * - ConsigSample
-    - C++ サンプルコンポーネント "ConsigSampleComp" を起動する
-  * - ConsoleIn
-    - C++ サンプルコンポーネント "ConsoleInComp" を起動する
-  * - ConsoleInPy
-    - Python サンプルコンポーネント "ConsoleInComp" を起動する
-  * - ConsoleOut
-    - C++ サンプルコンポーネント "ConsoleOutComp" を起動する
-  * - ConsoleOutPy
-    - Python サンプルコンポーネント "ConsoleOutComp" を起動する
-  * - Controller
-    - C++ サンプルコンポーネント "ControllerComp" を起動する
-  * - Motor
-    - C++ サンプルコンポーネント "MotorComp" を起動する
-  * - SeqIn
-    - C++ サンプルコンポーネント "SeqInComp" を起動する
-  * - SeqInPy
-    - Python サンプルコンポーネント "SeqInComp" を起動する
-  * - SeqOut
-    - C++ サンプルコンポーネント "SeqOutComp" を起動する
-  * - SeqOutPy
-    - Python サンプルコンポーネント "SeqOutComp" を起動する
-  * - TkJoyStick
-    - Python サンプルコンポーネント "TkJoyStick" を起動する
-  * - TkLRFViewer
-    - Python サンプルコンポーネント "TkLRFViewer" を起動する
-  * - MyServiceConsumer
-    - C++ サンプルコンポーネント "MyServiceConsumer" を起動する
-  * - MyServiceConsumerPy
-    - Python サンプルコンポーネント "MyServiceConsumer" を起動する
-  * - MyServiceProvider
-    - C++ サンプルコンポーネント "MyServiceProvider" を起動する
-  * - MyServiceProviderPy
-    - Python サンプルコンポーネント "MyServiceProvider" を起動する
-  * - Sensor
-    - C++ サンプルコンポーネント "SensorComp" を起動する
-
-オプション
-''''''''''
-.. list-table::  rtmdocker.py オプション一覧
-  :stub-columns: 1
-
-  * - -h, --help
-    - ヘルプメッセージを表示する
-  * - -v, --version
-    - ツールのバージョンを表示する
-  * - -n, --nameserver
-    - コマンド実行前にネームサーバーを起動する
-  * - -t, --tag TAGNAME
-    - 使用するDockerイメージのタグを指定する
-  * - -r, --run COMPONENT
-    - 指定したコンポーネントをDockerコンテナ内で起動する
-  * - -c, --compile [ARG]
-    - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
-  * - -x, --xforward
-    - X-forwarding を有効にする
-
-.. _images:
-
-利用できるイメージ（タグ名）
-----------------------------
-OpenRTM on Docker で利用できるイメージ一覧です．
-起動時にタグ指定することで切換えられます（指定しない場合はlatestが選択されます）．
-最新の状況についてはhttps://hub.docker.com/r/takahasi/docker-openrtm/をご確認ください
-
-.. csv-table:: 利用できるイメージ一覧
-  :header-rows: 1
-  :widths: 6, 4, 3, 2, 2, 2, 2, 2, 3
-  :file: ../data/images.csv
-
-6. FAQ
+7. FAQ
 =====================
 
-利用可能なPCのスペックは？
---------------------------
+7.1 利用可能なPCのスペックは？
+------------------------------
 ホストOSの種別については本書の :ref:`制約条件 動作環境<environment>` をご確認下さい．
 CPUクロックやメモリ要件については調査中です．
 
-動作性能は？
-------------
+7.2 動作性能は？
+-----------------
 測定中です．
 
-利用ライセンスは？
-------------------
+7.3 利用ライセンスは？
+----------------------
 本書の :ref:`制約条件 ライセンス<license>` をご確認下さい．
 
-利用可能なゲストOSは？
-------------------
+7.4 利用可能なゲストOSは？
+--------------------------
 主要なLinuxディストリビューションである Ubuntu，Debian，Fedora を利用できるようにしてます．
 各バージョンについては本書の :ref:`利用できるイメージ<images>` をご確認下さい．
 
@@ -676,14 +678,14 @@ CPUクロックやメモリ要件については調査中です．
 まだ動作が不安定であることとCUIのみでのOpenRTM-aistパッケージのインストールが難しいことから対応を見送っています．
 対応要望がありましたらRTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応しますので，お知らせ下さい．
 
-OpenRTM on Docker を利用するために必要なスキルは？
+7.5 利用するために必要なスキルは？
 --------------------------------------------------
 CUI での操作が多いため，Linux 系OSの操作に慣れている必要があります．
 しかし，最近はKitematicなどのGUIツールでDockerを操作できるようになってきたため，CUI での操作機会は減っています．
 また，コンテナによる仮想化の概念を理解していると応用した利用ができます．
 
-バグを発見した場合には？
--------------------------
+7.6 バグを発見した場合には？
+-----------------------------
 OpenRTM-aist RTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，
 GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応します．
 また，上記GitHub への pull request もお待ちしております．
