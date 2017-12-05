@@ -26,6 +26,7 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     ln -s /eclipse/openrtp /usr/bin/ && \
+    echo lxsession -s LXDE -e LXDE > ~/.xsession && \
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]

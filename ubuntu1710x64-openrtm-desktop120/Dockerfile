@@ -1,5 +1,5 @@
 
-FROM ubuntu:14.04
+FROM ubuntu:17.10
 LABEL maintainer="takahasi <3263ta@gmail.com>" \
       description="OpenRTM on Docker: OpenRTM-aist on Docker images." \
       build_type="ubuntu-all_desktop"

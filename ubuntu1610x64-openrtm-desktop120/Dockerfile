@@ -13,6 +13,7 @@ RUN apt-get install -y bc iputils-ping net-tools && \
     apt-get install -y lxde xrdp && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \
+    echo lxsession -s LXDE -e LXDE > ~/.xsession && \
     yes root | passwd root
 
 CMD ["/etc/init.d/xvnc", "start"]
