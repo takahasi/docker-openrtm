@@ -250,10 +250,12 @@ rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
   * - -v, --version
     - ツールのバージョンを表示する
   * - -n, --nameserver
-    - コマンド実行前にネームサーバーを起動する
+    - コマンド実行前にネームサービスを起動する
+  * - -r, --rdp
+    - コマンド実行前にRDP（Remote Desktop Protocol）サーバーを起動する
   * - -t, --tag TAGNAME
     - 使用するDockerイメージのタグを指定する
-  * - -r, --run COMPONENT
+  * - -e, --execute COMPONENT
     - 指定したコンポーネントをDockerコンテナ内で起動する
   * - -c, --compile [ARG]
     - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
@@ -342,6 +344,16 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
   * - OpenRTM on Docker
     - | MIT License
     - https://github.com/takahasi/docker-openrtm/blob/master/LICENSE
+
+
+5.3 コンテナのネットワーク
+-----------------------------
+本書ではコンテナに割り振られるIPアドレスをホストOSのネットワークと共通化（Docker の --net==host オプション）する方法で紹介しています．
+しかしながら，Docker の制約上，本方式は Linux では正しく動作しますが，Windows，MacOSX では仮想ネットワーク上に別アドレスが割り振られてしまいます
+（デフォルトでは 10.0.75.2-254 が割り振られます）．
+そのため，MacOSX，Windows で動作させる際はコンテナ内で ifconfig コマンドを使いIPアドレスを確認後に
+リモートデスクトップ接続やRT System Editor からのネームサービス接続を行って下さい．
+
 
 6. 使用方法
 ==================
@@ -577,9 +589,16 @@ OpenRTM on Docker Tools を利用する方法（推奨）
 - シェルを抜けるとコンテナが消去されます
 - ネットワークはホストのネットワークデバイスを利用する設定となっているため，コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます
 
+rtmdocker.py は下記コマンド，もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py にアクセスすることで入手できます．
+
 .. code-block:: sh
 
   $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+
+rtmdocker.py は下記のように実行します．
+
+.. code-block:: sh
+
   $ python rtmdocker.py bash
 
 例えば，サンプルコンポーネントである ConsoleOutComp を動作させる場合，下記のように入力します．
@@ -598,7 +617,11 @@ RDP（Remote Desktop Protocol）サーバがインストールされたイメー
 リモートデスクトップクライアントをホストOSにインストールし，
 リモートデスクトップクライアントからローカルホストに対して接続することで，
 OpenRTM on Dockerコンテナ内のデスクトップ画面を表示することができます．
-接続前にはかならずOpenRTM on Dockerコンテナを起動しておいて下さい．
+接続前にはかならずOpenRTM on Dockerコンテナを -r オプションで起動しておいて下さい．
+
+.. code-block:: sh
+
+  $ python rtmdocker.py -r bash
 
 Windows の場合，リモートデスクトップクライアントは標準インストールされています．
 「リモートデスクトップ接続」というアプリケーションを実行し，IPアドレス（標準では 10.0.75.2）を入力後，
