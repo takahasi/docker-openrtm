@@ -739,3 +739,22 @@ OpenRTM-aist RTMコンテスト2017プロジェクトページ http://www.openrt
 GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応します．
 また，上記GitHub への pull request もお待ちしております．
 
+
+8. 今後の改善予定
+=====================
+
+.. list-table:: 今後の改善予定
+  :header-rows: 1
+
+  * - 改善項目
+    - 備考
+  * - Windows RTM コンテナ環境の構築
+    - 現状 CUI しか使えないためOpenRTM-aistインストーラがサイレントインストールに対応する必要あり
+  * - コンテナ環境を利用したRTCテストツールの開発
+    - 構想のみ
+  * - コンテナ環境を利用したパッケージツールの開発
+    - 構想のみ
+  * - コンテナイメージの整理
+    - 数が多過ぎるため，あまり使わない組み合わせを整理すべき
+  * - OpenRTM on Docker を Docker Hub 公式レポジトリにする
+    - 公式レポジトリにすることでユーザを誘導しやすい
