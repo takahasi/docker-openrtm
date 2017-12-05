@@ -225,6 +225,7 @@ if __name__ == '__main__':
     ]
 
     dists = [
+        "ubuntu:17.10",
         "ubuntu:17.04",
         "ubuntu:16.10",
         "ubuntu:16.04",
