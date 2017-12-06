@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x && apt-get update -qq
 
 RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
-    apt-get install -y python-pip && \
+    apt-get install -y python-pip python-tk && \
     apt-get install -y default-jre && \
     apt-get install -y lxde xrdp && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_ubuntu.sh && \
