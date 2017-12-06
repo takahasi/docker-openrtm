@@ -197,47 +197,51 @@ rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
 .. list-table:: rtmdocker.py コマンド一覧
   :stub-columns: 1
 
-  * - openrtp
+  * - ``openrtp``
     - OpenRTP を起動する
-  * - bash
+  * - ``bash``
     - bash を起動する
-  * - Composite
+  * - ``Composite``
     - C++ サンプルコンポーネント "Composite" を起動する
-  * - ConsigSample
+  * - ``ConsigSample``
     - C++ サンプルコンポーネント "ConsigSampleComp" を起動する
-  * - ConsoleIn
+  * - ``ConsoleIn``
     - C++ サンプルコンポーネント "ConsoleInComp" を起動する
-  * - ConsoleInPy
+  * - ``ConsoleInPy``
     - Python サンプルコンポーネント "ConsoleInComp" を起動する
-  * - ConsoleOut
+  * - ``ConsoleOut``
     - C++ サンプルコンポーネント "ConsoleOutComp" を起動する
-  * - ConsoleOutPy
+  * - ``ConsoleOutPy``
     - Python サンプルコンポーネント "ConsoleOutComp" を起動する
-  * - Controller
+  * - ``ConfigSample``
+    - C++ サンプルコンポーネント "ConfigSampleComp" を起動する
+  * - ``ConfigSamplePy``
+    - Python サンプルコンポーネント "ConfigSampleComp" を起動する
+  * - ``Controller``
     - C++ サンプルコンポーネント "ControllerComp" を起動する
-  * - Motor
+  * - ``Motor``
     - C++ サンプルコンポーネント "MotorComp" を起動する
-  * - SeqIn
+  * - ``SeqIn``
     - C++ サンプルコンポーネント "SeqInComp" を起動する
-  * - SeqInPy
+  * - ``SeqInPy``
     - Python サンプルコンポーネント "SeqInComp" を起動する
-  * - SeqOut
+  * - ``SeqOut``
     - C++ サンプルコンポーネント "SeqOutComp" を起動する
-  * - SeqOutPy
+  * - ``SeqOutPy``
     - Python サンプルコンポーネント "SeqOutComp" を起動する
-  * - TkJoyStick
+  * - ``TkJoyStick``
     - Python サンプルコンポーネント "TkJoyStick" を起動する
-  * - TkLRFViewer
+  * - ``TkLRFViewer``
     - Python サンプルコンポーネント "TkLRFViewer" を起動する
-  * - MyServiceConsumer
+  * - ``MyServiceConsumer``
     - C++ サンプルコンポーネント "MyServiceConsumer" を起動する
-  * - MyServiceConsumerPy
+  * - ``MyServiceConsumerPy``
     - Python サンプルコンポーネント "MyServiceConsumer" を起動する
-  * - MyServiceProvider
+  * - ``MyServiceProvider``
     - C++ サンプルコンポーネント "MyServiceProvider" を起動する
-  * - MyServiceProviderPy
+  * - ``MyServiceProviderPy``
     - Python サンプルコンポーネント "MyServiceProvider" を起動する
-  * - Sensor
+  * - ``Sensor``
     - C++ サンプルコンポーネント "SensorComp" を起動する
 
 オプション
@@ -245,22 +249,37 @@ rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
 .. list-table::  rtmdocker.py オプション一覧
   :stub-columns: 1
 
-  * - -h, --help
+  * - ``-h, --help``
     - ヘルプメッセージを表示する
-  * - -v, --version
+  * - ``-v, --version``
     - ツールのバージョンを表示する
-  * - -n, --nameserver
+  * - ``-n, --nameserver``
     - コマンド実行前にネームサービスを起動する
-  * - -r, --rdp
+  * - ``-r, --rdp``
     - コマンド実行前にRDP（Remote Desktop Protocol）サーバーを起動する
-  * - -t, --tag TAGNAME
+  * - ``-t, --tag TAGNAME``
     - 使用するDockerイメージのタグを指定する
-  * - -e, --execute COMPONENT
+  * - ``-d, --device DEVICEFILE``
+    - ホストOSのデバイスをコンテナ内からもアクセス可能にする
+  * - ``-e, --execute COMPONENT``
     - 指定したコンポーネントをDockerコンテナ内で起動する
-  * - -c, --compile [ARG]
+  * - ``-c, --compile COMPONENT``
     - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
-  * - -x, --xforward
+  * - ``-x, --xforward``
     - X-forwarding を有効にする
+  * - ``--dryrun``
+    - docker を起動しない（コマンドオプションの確認用）
+
+返り値
+''''''''
+.. list-table:: rtmdocker.py 返り値一覧
+  :stub-columns: 1
+
+  * - ``0``
+    - 正常終了
+  * - ``1``
+    - 異常終了（Docker コマンドが見つからない場合）
+
 
 .. _images:
 
