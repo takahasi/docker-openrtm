@@ -183,14 +183,18 @@ rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動す�
 
 .. code-block:: sh
 
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+  $ wget -r https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
 
+もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py にアクセスすることで最新のものを入手できます．
 
 使用方法
 '''''''''
 .. code-block:: sh
 
   $ python rtmdocker.py [オプション] コマンド
+
+お使いのホストOSが Linux の場合，実行にroot権限（sudo）が必要になることがあります．
+sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利用する際に sudo が必要になる<sudo>` をご確認下さい．
 
 コマンド
 ''''''''
@@ -781,6 +785,8 @@ CUI での操作が多いため，Linux 系OSの操作に慣れている必要�
 OpenRTM-aist RTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，
 GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応します．
 また，上記GitHub への pull request もお待ちしております．
+
+.. _sudo:
 
 8.7 Linux で rtmdocker.py を利用する際に sudo が必要になる
 -----------------------------------------------------------
