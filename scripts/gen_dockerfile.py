@@ -29,6 +29,7 @@ dockerfile_template_12x_all_desktop = '''
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
     apt-get install -y lxde xrdp && \\
+    apt-get install -y python-tk && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
@@ -68,7 +69,7 @@ RUN apt-get install -y bc iputils-ping net-tools && \\
 
 dockerfile_template_11x_all_desktop = '''
 RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \\
-    apt-get install -y python-pip && \\
+    apt-get install -y python-pip python-tk && \\
     apt-get install -y default-jre && \\
     apt-get install -y lxde xrdp && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
