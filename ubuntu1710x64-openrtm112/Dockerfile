@@ -28,6 +28,4 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
 
 RUN apt-get autoclean -y && apt-get autoremove -y
 
-CMD ["rtm-naming", ""]
 ENTRYPOINT ["/bin/bash", "-c"]
-EXPOSE 80

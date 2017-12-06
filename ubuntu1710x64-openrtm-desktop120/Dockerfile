@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x && apt-get update -qq
 
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools && \
+RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \
     apt-get install -y lxde xrdp && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \
@@ -20,6 +20,4 @@ CMD ["/etc/init.d/xvnc", "start"]
 
 RUN apt-get autoclean -y && apt-get autoremove -y
 
-CMD ["rtm-naming", ""]
 ENTRYPOINT ["/bin/bash", "-c"]
-EXPOSE 80

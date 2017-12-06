@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -x && apt-get update -qq
 
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \
+RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
     apt-get install -y python-pip && \
     apt-get install -y default-jre && \
     apt-get install -y lxde xrdp && \
@@ -33,6 +33,4 @@ CMD ["/etc/init.d/xvnc", "start"]
 
 RUN apt-get autoclean -y && apt-get autoremove -y
 
-CMD ["rtm-naming", ""]
 ENTRYPOINT ["/bin/bash", "-c"]
-EXPOSE 80
