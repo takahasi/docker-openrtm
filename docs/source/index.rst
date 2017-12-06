@@ -608,11 +608,11 @@ OpenRTM on Docker Tools を利用する方法（推奨）
 - シェルを抜けるとコンテナが消去されます
 - ネットワークはホストのネットワークデバイスを利用する設定となっているため，コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます
 
-rtmdocker.py は下記コマンド，もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py にアクセスすることで入手できます．
+rtmdocker.py は下記コマンド，もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py にアクセスすることで最新のものを入手できます．
 
 .. code-block:: sh
 
-  $ wget https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+  $ wget -r https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
 
 rtmdocker.py は下記のように実行します．
 
@@ -781,6 +781,18 @@ CUI での操作が多いため，Linux 系OSの操作に慣れている必要�
 OpenRTM-aist RTMコンテスト2017プロジェクトページ http://www.openrtm.org/openrtm/ja/project/contest2017_10 にコメントいただくか，
 GitHubページ https://github.com/takahasi/docker-openrtm または https://github.com/takahasi/docker-openrtm-tools に issue として登録していただければ随時対応します．
 また，上記GitHub への pull request もお待ちしております．
+
+8.7 Linux で rtmdocker.py を利用する際に sudo が必要になる
+-----------------------------------------------------------
+Docker を実行しているユーザが docker グループに所属していない場合，
+ソケットを使用する権限がないため sudo が必要となってしまいます．
+sudo を不要にするためには下記のようにユーザを docker グループに所属させ，PCを再起動することで反映できます．
+なお，本書では誤操作を防ぐために sudo を抜いた記述に統一しています．
+
+.. code-block:: sh
+
+  sudo groupadd docker
+  sudo gpasswd -a $USER docker
 
 
 9. 今後の改善予定
