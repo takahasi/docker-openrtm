@@ -750,6 +750,13 @@ ImageToObjectPredictionコンポーネントは深層学習を用いて物体認
 
 https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/ImageToObjectPrediction
 
+DockerHub にビルド済みのイメージが登録されているので，下記コマンドで試すこともできます．
+
+.. code-block:: sh
+
+  $ docker run --network=host --rm -it takahasi/docker-openrtm-tools:startallexamples
+
+
 7.2 サンプルコンポーネント群の起動
 -------------------------------------------------------
 OpenRTM-aist含まれるサンプルコンポーネント群を自動起動するイメージを作成しました．
@@ -757,6 +764,11 @@ OpenRTM-aist含まれるサンプルコンポーネント群を自動起動す�
 
 https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/StartAllExamples
 
+DockerHub にビルド済みのイメージが登録されているので，下記コマンドで試すこともできます．
+
+.. code-block:: sh
+
+  $ docker run --network=host --rm -it takahasi/docker-openrtm-tools:imagetoobjectprediction
 
 8. FAQ
 =====================
