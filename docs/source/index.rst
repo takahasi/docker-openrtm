@@ -377,6 +377,15 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
 そのため，MacOSX，Windows で動作させる際はコンテナ内で ifconfig コマンドを使いIPアドレスを確認後に
 リモートデスクトップ接続やRT System Editor からのネームサービス接続を行って下さい．
 
+5.4 コンテナからのデバイス制御
+-------------------------------
+OpenRTM on DOckerではコンテナ内部からデバイスへのアクセスができるオプションが利用できます（Docker の -d オプション相当）．
+rtndocker.py を利用する場合は ``-d /dev/ttyUSB0`` ``-d /dev/video0`` などのようにデバイスファイルを指定することで利用できます．
+しかしながら，Docker の制約上，本方式は Linux では正しく動作しますが，Windows，MacOSX にはまだ対応していません．
+そのため，現状ではMacOSX，Windows で動作させる際はコンテナ外部にプロクシー用のRTCを別途準備する必要があります．
+Docker コミュニティでは Windows でもデバイス制御できるように修正を行っているようですので，Docker が対応次第，
+OpenRTM on Docker でも動作確認やツールオプションの追加をする予定です．
+
 
 6. 使用方法
 ==================
