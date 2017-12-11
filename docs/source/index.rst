@@ -726,7 +726,7 @@ Linux の場合，リモートデスクトップクライアント(remmina な�
 .. list-table:: リモートデスクトップ接続のパラメータ
 
   * - プロトコル
-    - RDP （Windowsの場合: Xorg， Linux の場合: sesman-x11rdp など）
+    - RDP （Windowsの場合: Xorg， Linux の場合: sesman-Xvnc などを選択）
   * - ユーザ名
     - root
   * - パスワード
@@ -758,6 +758,8 @@ Docker コマンドを直接利用する方法（中級者向け）
 ````````````````````````````````````````````````````````
 Docker コマンドで直接イメージを起動
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+rtmdocker.py を利用しなくても，直接 Docker コマンドで OpenRTM on Docker のイメージを操作できます．
+Docker の操作に慣れている場合，こちらの方法を用いた方が効率良く作業を進められます．
 
 .. code-block:: sh
 
@@ -765,10 +767,37 @@ Docker コマンドで直接イメージを起動
 
 Docker イメージのバージョンを指定し起動
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+タグ名を指定することで，任意のバージョンのイメージを利用することができます．
 
 .. code-block:: sh
 
   $ docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash
+
+起動しているコンテナに対してコマンドを実行
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+既に起動しているコンテナに対して外部からコマンドを実行させることもできます．
+まず，上述の方法でコンテナを起動した後に別ターミナルから ``docker ps`` コマンドでコンテナ名を確認します．
+以下の例ではコンテナ名は ``docker-openrtm-97`` となります．
+rtmdocker.py を使用してコンテナを起動した場合，コンテナ名はdocker-openrtm-[0~99]という名称が割り振られます．
+末尾の数字部分はランダムな数字です．
+
+.. code-block:: sh
+
+  $ docker ps
+  
+  CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS              PORTS               NAMES
+  d5a173975ba0        takahasi/docker-openrtm:latest   "/bin/bash -c bash"      9 seconds ago       Up 8 seconds                            docker-openrtm-97
+
+コンテナ名を確認後， ``docker exec`` コマンドを使うことでコンテナ内でコマンドが実行できます．
+下記の例では ``ls`` コマンドを実行しています．
+
+.. code-block:: sh
+
+  $ docker exec -ti docker-openrtm-97 ls
+  bin	 etc	media			      pkg_install_ubuntu.sh  sbin  usr
+  boot	 home	mnt			      proc		     srv   var
+  dev	 lib	opt			      root		     sys
+
 
 Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズ
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -845,7 +874,26 @@ CPUクロックやメモリ要件については調査中です．
 
 8.2 動作性能は？
 -----------------
-測定中です．
+CPU性能については測定中です．
+Docker で生成，管理されるコンテナはVirtual Machineと違い，
+各命令をトラップするなどのオーバヘッドがかかりません．
+理論的にはメモリ空間を仮想化する通常のプロセスと同じ扱いです．
+
+RAM使用量を計測した結果を下記に示します．
+OpenRTP はホスト環境で起動した場合も370-420MB ほど使用するので，
+あまり差異が無いことがわかります．
+
+.. list-table:: OpenRTM on Docker 使用時のRAM使用量
+
+  * - ホストOS
+    - Ubuntu16.04x64
+  * - コンテナ
+    - Ubuntu16.04x64 (docker-openrtm:ubuntu1604_openrtm112-desktop)
+  * - Bash
+    - +12MB
+  * - OpenRTP
+    - +420MB
+
 
 8.3 利用ライセンスは？
 ----------------------
