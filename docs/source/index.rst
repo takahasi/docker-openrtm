@@ -169,11 +169,13 @@ OpenRTM on Docker Tools とは，OpenRTM on Docker を実行するためのツ�
   :stub-columns: 1
 
   * - rtmdocker.py
-    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ起動スクリプト
+    - Linux/MacOSX/Windows向けOpenRTM on Dockerコンテナ起動スクリプト
+  * - rtmdocker_cleaner.py
+    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ，コンテナ消去スクリプト
 
 rtmdocker.py
 `````````````
-rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
+rtmdocker.py はOpenRTM on Dockerイメージを起動するためのスクリプトです．
 起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
 ネットワークはホストのネットワークデバイスを利用する設定となっているため，
 コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
@@ -263,6 +265,8 @@ sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利
     - コマンド実行前にRDP（Remote Desktop Protocol）サーバーを起動する
   * - ``-t, --tag TAGNAME``
     - 使用するDockerイメージのタグを指定する
+  * - ``-u, --upgrade``
+    - 使用するDockerイメージを最新版に更新する
   * - ``-d, --device DEVICEFILE``
     - ホストOSのデバイスをコンテナ内からもアクセス可能にする
   * - ``-e, --execute COMPONENT``
@@ -277,6 +281,59 @@ sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利
 返り値
 ''''''''
 .. list-table:: rtmdocker.py 返り値一覧
+  :stub-columns: 1
+
+  * - ``0``
+    - 正常終了
+  * - ``1``
+    - 異常終了（Docker コマンドが見つからない場合）
+
+rtmdocker_cleaner.py
+`````````````
+rtmdocker_cleaner.py はキャッシュされたOpenRTM on Dockerイメージやコンテナを消去するためのスクリプトです．
+実行時にOpenRTM on Docker以外のDockerコンテナやイメージも削除されますので，
+OpenRTM on Docker以外のDockerコンテナやイメージを併用されている場合は使用時に注意して下さい．
+
+ダウンロード方法
+''''''''''''''''
+
+.. code-block:: sh
+
+  $ wget -r https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker_cleaner.py
+
+もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker_cleaner.py にアクセスすることで最新のものを入手できます．
+
+使用方法
+'''''''''
+.. code-block:: sh
+
+  $ python rtmdocker_cleaner.py [オプション]
+
+お使いのホストOSが Linux の場合，実行にroot権限（sudo）が必要になることがあります．
+sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利用する際に sudo が必要になる<sudo>` をご確認下さい．
+
+
+オプション
+''''''''''
+.. list-table::  rtmdocker_cleaner.py オプション一覧
+  :stub-columns: 1
+
+  * - ``-h, --help``
+    - ヘルプメッセージを表示する
+  * - ``-v, --version``
+    - ツールのバージョンを表示する
+  * - ``-c, --containers``
+    - 全てのDockerコンテナを削除する
+  * - ``-i, --images``
+    - 全てのDockerイメージを削除する
+  * - ``-a, --all``
+    - 全てのDockerコンテナ，イメージを削除する
+  * - ``--dryrun``
+    - docker を起動しない（コマンドオプションの確認用）
+
+返り値
+''''''''
+.. list-table:: rtmdocker_cleaner.py 返り値一覧
   :stub-columns: 1
 
   * - ``0``
@@ -368,6 +425,7 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
     - | MIT License
     - https://github.com/takahasi/docker-openrtm/blob/master/LICENSE
 
+.. _network:
 
 5.3 コンテナのネットワーク
 -----------------------------
@@ -376,6 +434,8 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
 （デフォルトでは 10.0.75.2-254 が割り振られます）．
 そのため，MacOSX，Windows で動作させる際はコンテナ内で ifconfig コマンドを使いIPアドレスを確認後に
 リモートデスクトップ接続やRT System Editor からのネームサービス接続を行って下さい．
+
+.. _device:
 
 5.4 コンテナからのデバイス制御
 -------------------------------
@@ -809,7 +869,7 @@ GitHubページ https://github.com/takahasi/docker-openrtm または https://git
 
 .. _sudo:
 
-8.7 Linux で rtmdocker.py を利用する際に sudo が必要になる
+8.7 Linux で rtmdocker.py を利用する際に sudo を求められる
 -----------------------------------------------------------
 Docker を実行しているユーザが docker グループに所属していない場合，
 ソケットを使用する権限がないため sudo が必要となってしまいます．
@@ -821,6 +881,20 @@ sudo を不要にするためには下記のようにユーザを docker グル�
   sudo groupadd docker
   sudo gpasswd -a $USER docker
 
+8.8 キャッシュされたイメージではなく最新のイメージを利用したい
+----------------------------------------------------------------
+Docker on OpenRTM は不具合修正や付随するソフトウェアの更新を受けて，DockerHub上で自動ビルドされています．
+rtmdocker.py を利用する際に ``-U`` もしくは ``--upgrade`` オプションを付けることによって
+最新のイメージをダウンロードすることができます（要ネットワーク接続）．
+また， docker コマンドを直接利用している場合は ``docker pull takahasi/openrtm-docker:タグ名`` を実行することで，
+保存されたイメージを最新のものに置き換えられます．
+
+
+8.9 コンテナのネットワーク構成やデバイス利用可否を知りたい
+----------------------------------------------------------------
+コンテナのネットワーク構成については本書の :ref:`コンテナのネットワーク<network>` をご確認下さい．
+またコンテナ内部からのデバイス利用可否については本書の :ref:`コンテナからのデバイス制御<device>` をご確認下さい．
+
 
 9. 今後の改善予定
 =====================
@@ -830,6 +904,8 @@ sudo を不要にするためには下記のようにユーザを docker グル�
 
   * - 改善項目
     - 備考
+  * - Windows でのコンテナ内部からの外部ネットワークアクセス
+    - net=hostオプションが使えないため，ブリッジやポートフォワーディングを工夫する必要がある
   * - Windows RTM コンテナ環境の構築
     - 現状 CUI しか使えないためOpenRTM-aistインストーラがサイレントインストールに対応する必要あり
   * - コンテナ環境を利用したRTCテストツールの開発
