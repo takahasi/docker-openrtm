@@ -675,7 +675,7 @@ Docker が既にインストールされている環境であれば OpenRTM on D
 OpenRTM on Docker Tools を利用する方法（推奨）
 ``````````````````````````````````````````````
 - 実行にはPythonが必要になります．インストール方法は前節のPythonインストール方法を参照ください
-- rtmdocker.py の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは`python rtmdocker.py --help` で出力される内容を参照下さい
+- rtmdocker.py の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは ``python rtmdocker.py --help`` で出力される内容を参照下さい
 - タグを指定しない場合，最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます
@@ -723,9 +723,14 @@ Linux の場合，リモートデスクトップクライアント(remmina な�
 クライアントアプリケーションを実行し，IPアドレス（標準ではネットワークをホストOSと共有するので127.0.0.1）を入力後，
 下記のユーザ名，パスワードを入力することでデスクトップ画面が表示できます．
 
-* プロトコル: RDP （Windowsの場合: Xorg， Linux の場合: sesman-x11rdp など）
-* ユーザ名: root
-* パスワード: root
+.. list-table:: リモートデスクトップ接続のパラメータ
+
+  * - プロトコル
+    - RDP （Windowsの場合: Xorg， Linux の場合: sesman-x11rdp など）
+  * - ユーザ名
+    - root
+  * - パスワード
+    - root
 
 
 
