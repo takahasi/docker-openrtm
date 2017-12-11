@@ -152,6 +152,9 @@ OpenRTM on Docker を用いて，OpenRTM-aist がインストールされてい�
   :width: 70%
   :align: center
 
+.. image:: ../img/screen_win.png
+  :width: 70%
+  :align: center
 
 4. 機能詳細
 ==================
