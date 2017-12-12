@@ -69,6 +69,7 @@ RUN apt-get install -y bc iputils-ping net-tools && \\
 
 dockerfile_template_11x_all_desktop = '''
 RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \\
+    apt-get install -y libopencv-dev && \\
     apt-get install -y python-pip python-tk && \\
     apt-get install -y default-jre && \\
     apt-get install -y lxde xrdp && \\
@@ -86,6 +87,9 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \\
     ln -s /eclipse/openrtp /usr/bin/ && \\
+    svn export http://svn.openrtm.org/ImageProcessing/trunk/ImageProcessing/ && \\
+    cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \\
+    cmake -DCMAKE_INSTALL_PREFIX=/usr.. && make install && cd / && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
     yes root | passwd root
 
