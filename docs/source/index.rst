@@ -146,13 +146,28 @@ Dockerイメージを作成するためのDockerfileをスクリプトで自動�
 
 3.3 OpenRTM on Dockerを利用した際の画面例
 --------------------------------------------
+
+OpenRTM-aistがインストールされていない Linux 環境でRTCを起動
+`````````````````````````````````````````````````````````````
 OpenRTM on Docker を用いて，OpenRTM-aist がインストールされていない Linux 環境で NameServer，OprenRTP，サンプルコンポーネント（ConsoleIn，ConsoleOut）を接続した画面例を下記に示します．
 
 .. image:: ../img/screen.png
   :width: 70%
   :align: center
 
+WIndows 環境でサンプルコンポーネントを接続
+````````````````````````````````````````````
+OpenRTM on Docker を用いて，Windows 環境でサンプルコンポーネントMotorCompをコンテナ内部で起動，SliderCompをホストOS側で起動し，接続した画面例を下記に示します．
+
 .. image:: ../img/screen_win.png
+  :width: 70%
+  :align: center
+
+Linux 環境でコンテナ内部からデバイスを利用
+```````````````````````````````````````````
+OpenRTM on Docker を用いて，Linux 環境でコンテナ内部からカメラデバイスを制御した画面例を下記に示します．
+
+.. image:: ../img/screen_dev.png
   :width: 70%
   :align: center
 
