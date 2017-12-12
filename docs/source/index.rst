@@ -146,12 +146,30 @@ Dockerイメージを作成するためのDockerfileをスクリプトで自動�
 
 3.3 OpenRTM on Dockerを利用した際の画面例
 --------------------------------------------
+
+OpenRTM-aistがインストールされていない Linux 環境でRTCを起動
+`````````````````````````````````````````````````````````````
 OpenRTM on Docker を用いて，OpenRTM-aist がインストールされていない Linux 環境で NameServer，OprenRTP，サンプルコンポーネント（ConsoleIn，ConsoleOut）を接続した画面例を下記に示します．
 
 .. image:: ../img/screen.png
   :width: 70%
   :align: center
 
+WIndows 環境でサンプルコンポーネントを接続
+````````````````````````````````````````````
+OpenRTM on Docker を用いて，Windows 環境でサンプルコンポーネントMotorCompをコンテナ内部で起動，SliderCompをホストOS側で起動し，接続した画面例を下記に示します．
+
+.. image:: ../img/screen_win.png
+  :width: 70%
+  :align: center
+
+Linux 環境でコンテナ内部からデバイスを利用
+```````````````````````````````````````````
+OpenRTM on Docker を用いて，Linux 環境でコンテナ内部からカメラデバイスを制御した画面例を下記に示します．
+
+.. image:: ../img/screen_dev.png
+  :width: 70%
+  :align: center
 
 4. 機能詳細
 ==================
@@ -169,11 +187,13 @@ OpenRTM on Docker Tools とは，OpenRTM on Docker を実行するためのツ�
   :stub-columns: 1
 
   * - rtmdocker.py
-    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ起動スクリプト
+    - Linux/MacOSX/Windows向けOpenRTM on Dockerコンテナ起動スクリプト
+  * - rtmdocker_cleaner.py
+    - Linux/MacOSX/Windows向けOpenRTM on Dockerイメージ，コンテナ消去スクリプト
 
 rtmdocker.py
 `````````````
-rtmdocker.py はLinux/MacOSX向けのOpenRTM on Dockerイメージを起動するためのスクリプトです．
+rtmdocker.py はOpenRTM on Dockerイメージを起動するためのスクリプトです．
 起動時にオプションを指定することでコンテナ内のコンポーネントを起動，操作できます．
 ネットワークはホストのネットワークデバイスを利用する設定となっているため，
 コンテナ内でRTCを起動した場合もホストOS上でRTCを起動した場合と等価に見えます．
@@ -263,6 +283,8 @@ sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利
     - コマンド実行前にRDP（Remote Desktop Protocol）サーバーを起動する
   * - ``-t, --tag TAGNAME``
     - 使用するDockerイメージのタグを指定する
+  * - ``-u, --upgrade``
+    - 使用するDockerイメージを最新版に更新する
   * - ``-d, --device DEVICEFILE``
     - ホストOSのデバイスをコンテナ内からもアクセス可能にする
   * - ``-e, --execute COMPONENT``
@@ -277,6 +299,59 @@ sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利
 返り値
 ''''''''
 .. list-table:: rtmdocker.py 返り値一覧
+  :stub-columns: 1
+
+  * - ``0``
+    - 正常終了
+  * - ``1``
+    - 異常終了（Docker コマンドが見つからない場合）
+
+rtmdocker_cleaner.py
+`````````````
+rtmdocker_cleaner.py はキャッシュされたOpenRTM on Dockerイメージやコンテナを消去するためのスクリプトです．
+実行時にOpenRTM on Docker以外のDockerコンテナやイメージも削除されますので，
+OpenRTM on Docker以外のDockerコンテナやイメージを併用されている場合は使用時に注意して下さい．
+
+ダウンロード方法
+''''''''''''''''
+
+.. code-block:: sh
+
+  $ wget -r https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker_cleaner.py
+
+もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker_cleaner.py にアクセスすることで最新のものを入手できます．
+
+使用方法
+'''''''''
+.. code-block:: sh
+
+  $ python rtmdocker_cleaner.py [オプション]
+
+お使いのホストOSが Linux の場合，実行にroot権限（sudo）が必要になることがあります．
+sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利用する際に sudo が必要になる<sudo>` をご確認下さい．
+
+
+オプション
+''''''''''
+.. list-table::  rtmdocker_cleaner.py オプション一覧
+  :stub-columns: 1
+
+  * - ``-h, --help``
+    - ヘルプメッセージを表示する
+  * - ``-v, --version``
+    - ツールのバージョンを表示する
+  * - ``-c, --containers``
+    - 全てのDockerコンテナを削除する
+  * - ``-i, --images``
+    - 全てのDockerイメージを削除する
+  * - ``-a, --all``
+    - 全てのDockerコンテナ，イメージを削除する
+  * - ``--dryrun``
+    - docker を起動しない（コマンドオプションの確認用）
+
+返り値
+''''''''
+.. list-table:: rtmdocker_cleaner.py 返り値一覧
   :stub-columns: 1
 
   * - ``0``
@@ -368,6 +443,7 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
     - | MIT License
     - https://github.com/takahasi/docker-openrtm/blob/master/LICENSE
 
+.. _network:
 
 5.3 コンテナのネットワーク
 -----------------------------
@@ -376,6 +452,17 @@ OpenRTM on Docker に含まれる Dockerfile やツール群はMITライセン�
 （デフォルトでは 10.0.75.2-254 が割り振られます）．
 そのため，MacOSX，Windows で動作させる際はコンテナ内で ifconfig コマンドを使いIPアドレスを確認後に
 リモートデスクトップ接続やRT System Editor からのネームサービス接続を行って下さい．
+
+.. _device:
+
+5.4 コンテナからのデバイス制御
+-------------------------------
+OpenRTM on DOckerではコンテナ内部からデバイスへのアクセスができるオプションが利用できます（Docker の -d オプション相当）．
+rtndocker.py を利用する場合は ``-d /dev/ttyUSB0`` ``-d /dev/video0`` などのようにデバイスファイルを指定することで利用できます．
+しかしながら，Docker の制約上，本方式は Linux では正しく動作しますが，Windows，MacOSX にはまだ対応していません．
+そのため，現状ではMacOSX，Windows で動作させる際はコンテナ外部にプロクシー用のRTCを別途準備する必要があります．
+Docker コミュニティでは Windows でもデバイス制御できるように修正を行っているようですので，Docker が対応次第，
+OpenRTM on Docker でも動作確認やツールオプションの追加をする予定です．
 
 
 6. 使用方法
@@ -606,7 +693,7 @@ Docker が既にインストールされている環境であれば OpenRTM on D
 OpenRTM on Docker Tools を利用する方法（推奨）
 ``````````````````````````````````````````````
 - 実行にはPythonが必要になります．インストール方法は前節のPythonインストール方法を参照ください
-- rtmdocker.py の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは`python rtmdocker.py --help` で出力される内容を参照下さい
+- rtmdocker.py の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは ``python rtmdocker.py --help`` で出力される内容を参照下さい
 - タグを指定しない場合，最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます
@@ -654,9 +741,14 @@ Linux の場合，リモートデスクトップクライアント(remmina な�
 クライアントアプリケーションを実行し，IPアドレス（標準ではネットワークをホストOSと共有するので127.0.0.1）を入力後，
 下記のユーザ名，パスワードを入力することでデスクトップ画面が表示できます．
 
-* プロトコル: RDP （Windowsの場合: Xorg， Linux の場合: sesman-x11rdp など）
-* ユーザ名: root
-* パスワード: root
+.. list-table:: リモートデスクトップ接続のパラメータ
+
+  * - プロトコル
+    - RDP （Windowsの場合: Xorg， Linux の場合: sesman-Xvnc などを選択）
+  * - ユーザ名
+    - root
+  * - パスワード
+    - root
 
 
 
@@ -684,6 +776,8 @@ Docker コマンドを直接利用する方法（中級者向け）
 ````````````````````````````````````````````````````````
 Docker コマンドで直接イメージを起動
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+rtmdocker.py を利用しなくても，直接 Docker コマンドで OpenRTM on Docker のイメージを操作できます．
+Docker の操作に慣れている場合，こちらの方法を用いた方が効率良く作業を進められます．
 
 .. code-block:: sh
 
@@ -691,10 +785,37 @@ Docker コマンドで直接イメージを起動
 
 Docker イメージのバージョンを指定し起動
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+タグ名を指定することで，任意のバージョンのイメージを利用することができます．
 
 .. code-block:: sh
 
   $ docker run --rm -ti takahasi/docker-openrtm:ubuntu1404_openrtm112 bash
+
+起動しているコンテナに対してコマンドを実行
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+既に起動しているコンテナに対して外部からコマンドを実行させることもできます．
+まず，上述の方法でコンテナを起動した後に別ターミナルから ``docker ps`` コマンドでコンテナ名を確認します．
+以下の例ではコンテナ名は ``docker-openrtm-97`` となります．
+rtmdocker.py を使用してコンテナを起動した場合，コンテナ名はdocker-openrtm-[0~99]という名称が割り振られます．
+末尾の数字部分はランダムな数字です．
+
+.. code-block:: sh
+
+  $ docker ps
+  
+  CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS              PORTS               NAMES
+  d5a173975ba0        takahasi/docker-openrtm:latest   "/bin/bash -c bash"      9 seconds ago       Up 8 seconds                            docker-openrtm-97
+
+コンテナ名を確認後， ``docker exec`` コマンドを使うことでコンテナ内でコマンドが実行できます．
+下記の例では ``ls`` コマンドを実行しています．
+
+.. code-block:: sh
+
+  $ docker exec -ti docker-openrtm-97 ls
+  bin	 etc	media			      pkg_install_ubuntu.sh  sbin  usr
+  boot	 home	mnt			      proc		     srv   var
+  dev	 lib	opt			      root		     sys
+
 
 Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズ
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -741,6 +862,13 @@ ImageToObjectPredictionコンポーネントは深層学習を用いて物体認
 
 https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/ImageToObjectPrediction
 
+DockerHub にビルド済みのイメージが登録されているので，下記コマンドで試すこともできます．
+
+.. code-block:: sh
+
+  $ docker run --network=host --rm -it takahasi/docker-openrtm-tools:startallexamples
+
+
 7.2 サンプルコンポーネント群の起動
 -------------------------------------------------------
 OpenRTM-aist含まれるサンプルコンポーネント群を自動起動するイメージを作成しました．
@@ -748,6 +876,11 @@ OpenRTM-aist含まれるサンプルコンポーネント群を自動起動す�
 
 https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/StartAllExamples
 
+DockerHub にビルド済みのイメージが登録されているので，下記コマンドで試すこともできます．
+
+.. code-block:: sh
+
+  $ docker run --network=host --rm -it takahasi/docker-openrtm-tools:imagetoobjectprediction
 
 8. FAQ
 =====================
@@ -759,7 +892,26 @@ CPUクロックやメモリ要件については調査中です．
 
 8.2 動作性能は？
 -----------------
-測定中です．
+CPU性能については測定中です．
+Docker で生成，管理されるコンテナはVirtual Machineと違い，
+各命令をトラップするなどのオーバヘッドがかかりません．
+理論的にはメモリ空間を仮想化する通常のプロセスと同じ扱いです．
+
+RAM使用量を計測した結果を下記に示します．
+OpenRTP はホスト環境で起動した場合も370-420MB ほど使用するので，
+あまり差異が無いことがわかります．
+
+.. list-table:: OpenRTM on Docker 使用時のRAM使用量
+
+  * - ホストOS
+    - Ubuntu16.04x64
+  * - コンテナ
+    - Ubuntu16.04x64 (docker-openrtm:ubuntu1604_openrtm112-desktop)
+  * - Bash
+    - +12MB
+  * - OpenRTP
+    - +420MB
+
 
 8.3 利用ライセンスは？
 ----------------------
@@ -788,7 +940,7 @@ GitHubページ https://github.com/takahasi/docker-openrtm または https://git
 
 .. _sudo:
 
-8.7 Linux で rtmdocker.py を利用する際に sudo が必要になる
+8.7 Linux で rtmdocker.py を利用する際に sudo を求められる
 -----------------------------------------------------------
 Docker を実行しているユーザが docker グループに所属していない場合，
 ソケットを使用する権限がないため sudo が必要となってしまいます．
@@ -800,6 +952,20 @@ sudo を不要にするためには下記のようにユーザを docker グル�
   sudo groupadd docker
   sudo gpasswd -a $USER docker
 
+8.8 キャッシュされたイメージではなく最新のイメージを利用したい
+----------------------------------------------------------------
+Docker on OpenRTM は不具合修正や付随するソフトウェアの更新を受けて，DockerHub上で自動ビルドされています．
+rtmdocker.py を利用する際に ``-U`` もしくは ``--upgrade`` オプションを付けることによって
+最新のイメージをダウンロードすることができます（要ネットワーク接続）．
+また， docker コマンドを直接利用している場合は ``docker pull takahasi/openrtm-docker:タグ名`` を実行することで，
+保存されたイメージを最新のものに置き換えられます．
+
+
+8.9 コンテナのネットワーク構成やデバイス利用可否を知りたい
+----------------------------------------------------------------
+コンテナのネットワーク構成については本書の :ref:`コンテナのネットワーク<network>` をご確認下さい．
+またコンテナ内部からのデバイス利用可否については本書の :ref:`コンテナからのデバイス制御<device>` をご確認下さい．
+
 
 9. 今後の改善予定
 =====================
@@ -809,6 +975,8 @@ sudo を不要にするためには下記のようにユーザを docker グル�
 
   * - 改善項目
     - 備考
+  * - Windows でのコンテナ内部からの外部ネットワークアクセス
+    - net=hostオプションが使えないため，ブリッジやポートフォワーディングを工夫する必要がある
   * - Windows RTM コンテナ環境の構築
     - 現状 CUI しか使えないためOpenRTM-aistインストーラがサイレントインストールに対応する必要あり
   * - コンテナ環境を利用したRTCテストツールの開発
