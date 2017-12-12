@@ -14,6 +14,10 @@ RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \
     apt-get install -y python-tk && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \
+    ./pkg_install.sh -l all -d --yes && \
+    svn export http://svn.openrtm.org/ImageProcessing/trunk/ImageProcessing/ && \
+    cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make install && cd / && \
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \
     yes root | passwd root
 
