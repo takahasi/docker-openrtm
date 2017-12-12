@@ -29,7 +29,7 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     ln -s /eclipse/openrtp /usr/bin/ && \
     svn export http://svn.openrtm.org/ImageProcessing/trunk/ImageProcessing/ && \
     cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX=/usr.. && make install && cd / && \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make install && cd / && \
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \
     yes root | passwd root
 

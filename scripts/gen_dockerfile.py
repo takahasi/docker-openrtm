@@ -33,6 +33,9 @@ RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     ./pkg_install.sh -l all -d --yes && \\
+    svn export http://svn.openrtm.org/ImageProcessing/trunk/ImageProcessing/ && \\
+    cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \\
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make install && cd / && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
     yes root | passwd root
 
@@ -43,8 +46,11 @@ dockerfile_template_12x_all = '''
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \\
     chmod a+x ./pkg_install.sh && sync && \\
-    ./pkg_install.sh -l all -c --yes
+    ./pkg_install.sh -l all -c --yes && \\
     ./pkg_install.sh -l all -d --yes && \\
+    svn export http://svn.openrtm.org/ImageProcessing/trunk/ImageProcessing/ && \\
+    cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \\
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make install && cd /
 '''
 
 dockerfile_template_12x_cxx = '''
@@ -91,7 +97,7 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     ln -s /eclipse/openrtp /usr/bin/ && \\
     svn export http://svn.openrtm.org/ImageProcessing/trunk/ImageProcessing/ && \\
     cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \\
-    cmake -DCMAKE_INSTALL_PREFIX=/usr.. && make install && cd / && \\
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make install && cd / && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
     yes root | passwd root
 
