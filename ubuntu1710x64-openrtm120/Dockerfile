@@ -12,6 +12,7 @@ COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes
+    ./pkg_install.sh -l all -d --yes && \
 
 RUN apt-get autoclean -y && apt-get autoremove -y
 
