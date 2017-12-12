@@ -222,6 +222,10 @@ class DockerImage:
                          dist=self._dist,
                          buildtype=self._dist + '-' + self._type,
                          rtmver=self._rtm_ver_major + '_' + self._rtm_ver_minor + '_' + self._rtm_ver_rev)
+
+            if self._dist == "fedora":
+                m = m.replace("apt-get", "dnf")
+
             f.write(m)
         else:
             print("Unknown version!!")
@@ -243,10 +247,10 @@ if __name__ == '__main__':
         "ubuntu:16.04",
         "ubuntu:14.04",
         "ubuntu:12.04",
-        # "debian:8",
-        # "debian:9",
-        # "fedora:24",
-        # "fedora:25",
+        "debian:8",
+        "debian:9",
+        "fedora:24",
+        "fedora:25",
     ]
 
     types = [
