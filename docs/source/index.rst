@@ -267,6 +267,53 @@ sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利
     - Python サンプルコンポーネント "MyServiceProvider" を起動する
   * - ``Sensor``
     - C++ サンプルコンポーネント "SensorComp" を起動する
+  * - ``Affine``
+    - OpenCV サンプルコンポーネント "AffineComp" を起動する
+  * - ``BackGroundSubtractionSimple``
+    - OpenCV サンプルコンポーネント "BackGroundSubtractionSimpleComp" を起動する
+  * - ``Binarization``
+    - OpenCV サンプルコンポーネント "BinarizationComp" を起動する
+  * - ``CameraViewer``
+    - OpenCV サンプルコンポーネント "CameraViewerComp" を起動する
+  * - ``Chromakey``
+    - OpenCV サンプルコンポーネント "ChromakeyComp" を起動する
+  * - ``DilationErosion``
+    - OpenCV サンプルコンポーネント "DilationErotionComp" を起動する
+  * - ``Edge``
+    - OpenCV サンプルコンポーネント "EdgeComp" を起動する
+  * - ``Findcontour``
+    - OpenCV サンプルコンポーネント "FindcontourComp" を起動する
+  * - ``Flip``
+    - OpenCV サンプルコンポーネント "FlipComp" を起動する
+  * - ``Histogram``
+    - OpenCV サンプルコンポーネント "HistogramComp" を起動する
+  * - ``Hough``
+    - OpenCV サンプルコンポーネント "HoughComp" を起動する
+  * - ``ImageCalibration``
+    - OpenCV サンプルコンポーネント "ImageCalibrationComp" を起動する
+  * - ``ImageSubstraction``
+    - OpenCV サンプルコンポーネント "ImageSubstractionComp" を起動する
+  * - ``ObjectTracking``
+    - OpenCV サンプルコンポーネント "ObjectTrackingComp" を起動する
+  * - ``OpenCVCamera``
+    - OpenCV サンプルコンポーネント "OpenCVCameraComp" を起動する
+  * - ``Perspective``
+    - OpenCV サンプルコンポーネント "PerspectiveComp" を起動する
+  * - ``RockPaperScissors``
+    - OpenCV サンプルコンポーネント "RockPaperScissorsComp" を起動する
+  * - ``Rotate``
+    - OpenCV サンプルコンポーネント "RotateComp" を起動する
+  * - ``Scale``
+    - OpenCV サンプルコンポーネント "ScaleComp" を起動する
+  * - ``Sepia``            
+    - OpenCV サンプルコンポーネント "SepiaComp" を起動する
+  * - ``SubstractCaptureImage``
+    - OpenCV サンプルコンポーネント "SubstractCaptureImageComp" を起動する
+  * - ``Template``
+    - OpenCV サンプルコンポーネント "TemplateComp" を起動する
+  * - ``Translate``
+    - OpenCV サンプルコンポーネント "TranslateComp" を起動する
+
 
 オプション
 ''''''''''
