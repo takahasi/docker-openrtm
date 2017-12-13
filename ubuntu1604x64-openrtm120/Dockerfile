@@ -10,6 +10,7 @@ RUN set -x && apt-get update -qq
 
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \
+    apt-get install -y libopencv-dev && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \
     ./pkg_install.sh -l all -d --yes && \

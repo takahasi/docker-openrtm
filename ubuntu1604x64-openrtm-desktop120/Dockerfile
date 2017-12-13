@@ -10,6 +10,7 @@ RUN set -x && apt-get update -qq
 
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \
+    apt-get install -y libopencv-dev && \
     apt-get install -y lxde xrdp && \
     apt-get install -y python-tk && \
     chmod a+x ./pkg_install.sh && sync && \

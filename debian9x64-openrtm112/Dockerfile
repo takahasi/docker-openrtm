@@ -8,7 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -x && apt-get update -qq
 
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \
+RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
+    apt-get install -y libopencv-dev && \
     apt-get install -y python-pip && \
     apt-get install -y default-jre && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_debian.sh && \

@@ -28,6 +28,7 @@ ENTRYPOINT ["/bin/bash", "-c"]
 dockerfile_template_12x_all_desktop = '''
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
+    apt-get install -y libopencv-dev && \\
     apt-get install -y lxde xrdp && \\
     apt-get install -y python-tk && \\
     chmod a+x ./pkg_install.sh && sync && \\
@@ -45,6 +46,7 @@ CMD ["/etc/init.d/xvnc", "start"]
 dockerfile_template_12x_all = '''
 COPY pkg_install.sh /
 RUN apt-get install -y bc iputils-ping net-tools && \\
+    apt-get install -y libopencv-dev && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     ./pkg_install.sh -l all -d --yes && \\
@@ -105,7 +107,8 @@ CMD ["/etc/init.d/xvnc", "start"]
 '''
 
 dockerfile_template_11x_all = '''
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \\
+    apt-get install -y libopencv-dev && \\
     apt-get install -y python-pip && \\
     apt-get install -y default-jre && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
@@ -225,6 +228,7 @@ class DockerImage:
 
             if self._dist == "fedora":
                 m = m.replace("apt-get", "dnf")
+                m = m.replace("-qq", "-y")
 
             f.write(m)
         else:

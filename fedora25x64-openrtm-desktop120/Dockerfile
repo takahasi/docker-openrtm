@@ -6,10 +6,11 @@ LABEL maintainer="takahasi <3263ta@gmail.com>" \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && dnf update -qq
+RUN set -x && dnf update -y
 
 COPY pkg_install.sh /
 RUN dnf install -y bc iputils-ping net-tools subversion git cmake && \
+    dnf install -y libopencv-dev && \
     dnf install -y lxde xrdp && \
     dnf install -y python-tk && \
     chmod a+x ./pkg_install.sh && sync && \

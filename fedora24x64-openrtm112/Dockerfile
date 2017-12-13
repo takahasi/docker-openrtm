@@ -6,9 +6,10 @@ LABEL maintainer="takahasi <3263ta@gmail.com>" \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && dnf update -qq
+RUN set -x && dnf update -y
 
-RUN dnf install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \
+RUN dnf install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
+    dnf install -y libopencv-dev && \
     dnf install -y python-pip && \
     dnf install -y default-jre && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_fedora.sh && \
