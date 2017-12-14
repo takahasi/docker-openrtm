@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x && dnf update -y
 
 COPY pkg_install.sh /
-RUN dnf install -y bc iputils-ping net-tools && \
+RUN dnf install -y bc iputils-ping net-tools subversion git cmake && \
     dnf install -y libopencv-dev && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \

@@ -45,7 +45,7 @@ CMD ["/etc/init.d/xvnc", "start"]
 
 dockerfile_template_12x_all = '''
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools && \\
+RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
     apt-get install -y libopencv-dev && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
