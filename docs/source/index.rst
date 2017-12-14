@@ -863,6 +863,52 @@ rtmdocker.py を使用してコンテナを起動した場合，コンテナ名�
   boot	 home	mnt			      proc		     srv   var
   dev	 lib	opt			      root		     sys
 
+.. _export:
+
+起動しているコンテナを保存して別の環境で実行する
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+既に起動しているコンテナに対してファイルシステム一式を保存して，別のPC環境で復元することもできます．
+自作のコンポーネント動作環境を配布する際や，不具合の出た環境を再現する際に利用できます．
+まず，上述の方法でコンテナを起動した後に別ターミナルから ``docker ps`` コマンドでコンテナ名を確認します．
+以下の例ではコンテナ名は ``docker-openrtm-97`` となります．
+rtmdocker.py を使用してコンテナを起動した場合，コンテナ名はdocker-openrtm-[0~99]という名称が割り振られます．
+末尾の数字部分はランダムな数字です．
+
+.. code-block:: sh
+
+  $ docker ps
+  
+  CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS              PORTS               NAMES
+  d5a173975ba0        takahasi/docker-openrtm:latest   "/bin/bash -c bash"      9 seconds ago       Up 8 seconds                            docker-openrtm-97
+
+コンテナ名を確認後， ``docker export`` コマンドを使うことで tar 圧縮形式でコンテナを保存することができます．
+下記の例では ``docker-openrtm-97.tar`` という名前で保存しています．
+
+.. code-block:: sh
+
+  $ docker export -o docker-openrtm-97.tar docker-openrtm-97
+
+保存したコンテナを別環境で再度実行する場合は， ``docker import`` コマンドを使います．
+import コマンドを行うと保存した環境が新たな Docker イメージとして取り込まれますので，イメージ名やタグ名（タグ名を省略した場合はlatestというタグになります）を設定します．
+下記の例では mycomponent というイメージ名で，v1.0というタグ名をつけています．
+
+import が完了したら， ``docker images`` コマンドで意図通りにイメージが作成できているか確認してみます．
+
+.. code-block:: sh
+
+  $ docker import docker-openrtm-97.tar mycomponent:v1.0
+
+  $ docker images
+
+  REPOSITORY                TAG                             IMAGE ID            CREATED             SIZE
+  mycomponent               v1.0                            57066ea56c52        4 minutes ago       2.46GB
+
+イメージができていれば，後はそのイメージからコンテナを起動するだけで，環境の復元ができます．
+
+.. code-block:: sh
+
+  $ docker run --rm -ti mycomponent:v1.0 bash
+
 
 Dockerfileを使ってOpenRTM on Dockerイメージをカスタマイズ
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -1012,6 +1058,12 @@ rtmdocker.py を利用する際に ``-U`` もしくは ``--upgrade`` オプシ�
 ----------------------------------------------------------------
 コンテナのネットワーク構成については本書の :ref:`コンテナのネットワーク<network>` をご確認下さい．
 またコンテナ内部からのデバイス利用可否については本書の :ref:`コンテナからのデバイス制御<device>` をご確認下さい．
+
+
+8.10 自分で作成したコンテナを配布したい
+----------------------------------------------------------------
+Dockerにはコンテナを保存，復元する機能があります．
+具体的な方法については本書の :ref:`起動しているコンテナを保存して別の環境で実行する<export>` をご確認下さい．
 
 
 9. 今後の改善予定
