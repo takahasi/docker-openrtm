@@ -975,6 +975,23 @@ DockerHub にビルド済みのイメージが登録されているので，下�
 
   $ docker run --network=host --rm -it takahasi/docker-openrtm-tools:imagetoobjectprediction
 
+
+7.3 Choreonoid用OpenRTM連携プラグイン Python版の起動
+-------------------------------------------------------
+RTMコンテスト2017の作品である「Choreonoid用OpenRTM連携プラグイン Python版」をDockerイメージ化しました．
+動作確認に利用できます．
+https://github.com/takahasi/docker-openrtm-tools/tree/master/examples/ChoreonoidOpenRTMPython
+
+作品の詳細は下記をご確認下さい．
+http://www.openrtm.org/openrtm/ja/project/contest2017_06
+
+DockerHub にビルド済みのイメージが登録されているので，下記コマンドで試すこともできます．
+
+.. code-block:: sh
+
+  $ docker run --network=host --rm -it takahasi/docker-openrtm-tools:choreonoid_openrtm_plugin
+
+
 8. FAQ
 =====================
 
