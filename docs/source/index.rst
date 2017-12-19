@@ -338,6 +338,8 @@ sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利
     - 指定したコンポーネントをDockerコンテナ内で起動する
   * - ``-c, --compile COMPONENT``
     - 指定したコンポーネントをDockerコンテナ内でコンパイルする（C++のみ）
+  * - ``--proxy PROXY``
+    - 指定したproxyをコンテナ内から利用する
   * - ``-x, --xforward``
     - X-forwarding を有効にする
   * - ``--dryrun``
