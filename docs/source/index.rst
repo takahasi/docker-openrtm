@@ -201,17 +201,21 @@ rtmdocker.py はOpenRTM on Dockerイメージを起動するためのスクリ�
 ダウンロード方法
 ''''''''''''''''
 
+PyPiパッケージとして配布していますので，下記コマンドで入手できます（Linuxの場合，sudo が必要になる場合があります）
+
 .. code-block:: sh
 
-  $ wget -r https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+  $ pip install rtmdocker
 
-もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py にアクセスすることで最新のものを入手できます．
+もしくはWebブラウザから https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker/rtmdocker.py にアクセスすることで最新のものを入手できます．
+
+rtmdocker.py ファイルを直接入手して利用する場合，以降で説明するrtmdockerコマンドを``rtmdocker``と読み替えて下さい．
 
 使用方法
 '''''''''
 .. code-block:: sh
 
-  $ python rtmdocker.py [オプション] コマンド
+  $ rtmdocker [オプション] コマンド
 
 お使いのホストOSが Linux の場合，実行にroot権限（sudo）が必要になることがあります．
 sudo を不要とする方法については :ref:`Linux で rtmdocker.py を利用する際に sudo が必要になる<sudo>` をご確認下さい．
@@ -742,7 +746,7 @@ Docker が既にインストールされている環境であれば OpenRTM on D
 OpenRTM on Docker Tools を利用する方法（推奨）
 ``````````````````````````````````````````````
 - 実行にはPythonが必要になります．インストール方法は前節のPythonインストール方法を参照ください
-- rtmdocker.py の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは ``python rtmdocker.py --help`` で出力される内容を参照下さい
+- rtmdocker の詳細なオプションについては :ref:`機能詳細 OpenRTM on Docker Tools<rtmdocker>` もしくは ``rtmdocker --help`` で出力される内容を参照下さい
 - タグを指定しない場合，最新の全パッケージ入り OpenRTM on Docker イメージを利用します
 - HOMEディレクトリが共有されてDockerイメージ内のシェルが起動します  
 - シェルを抜けるとコンテナが消去されます
@@ -752,19 +756,19 @@ rtmdocker.py は下記コマンド，もしくはWebブラウザから https://r
 
 .. code-block:: sh
 
-  $ wget -r https://raw.githubusercontent.com/takahasi/docker-openrtm-tools/master/rtmdocker.py
+  $ pip install rtmdocker
 
 rtmdocker.py は下記のように実行します．
 
 .. code-block:: sh
 
-  $ python rtmdocker.py bash
+  $ rtmdocker bash
 
 例えば，サンプルコンポーネントである ConsoleOutComp を動作させる場合，下記のように入力します．
 
 .. code-block:: sh
 
-  $ python rtmdocker.py ConsoleOut
+  $ rtmdocker ConsoleOut
 
 
 GUIアプリケーションを使う方法
@@ -780,7 +784,7 @@ OpenRTM on Dockerコンテナ内のデスクトップ画面を表示すること
 
 .. code-block:: sh
 
-  $ python rtmdocker.py -r bash
+  $ rtmdocker -r bash
 
 Windows の場合，リモートデスクトップクライアントは標準インストールされています．
 「リモートデスクトップ接続」というアプリケーションを実行し，IPアドレス（標準では 10.0.75.2）を入力後，
@@ -812,13 +816,13 @@ McOSX の場合は XQuartz https://www.xquartz.org/ などを別途インスト�
 
 .. code-block:: sh
 
-  $ python rtmdocker.py -x bash
+  $ rtmdocker -x bash
 
 例えば，OpenRTPを利用したい場合，下記のようなコマンドを入力することで起動できます．
 
 .. code-block:: sh
 
-  $ python rtmdocker.py -x openrtp
+  $ rtmdocker -x openrtp
 
 
 Docker コマンドを直接利用する方法（中級者向け）
