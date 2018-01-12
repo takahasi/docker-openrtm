@@ -6,12 +6,23 @@ LABEL maintainer="takahasi <3263ta@gmail.com>" \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && apt-get update -qq
+RUN set -x && \
+    apt-get update -qq
 
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
-    apt-get install -y libopencv-dev && \
-    apt-get install -y python-pip && \
-    apt-get install -y default-jre && \
+RUN apt-get install -y curl \
+                       bc \
+                       bsdmainutils \
+                       apt-utils \
+                       aptitude \
+                       iputils-ping \
+                       net-tools \
+                       subversion \
+                       git \
+                       cmake \
+                       libopencv-dev \
+                       python-pip \
+                       python-tk \
+                       default-jre &&\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_ubuntu.sh && \
     chmod a+x pkg_install_ubuntu.sh && sync && \
     ./pkg_install_ubuntu.sh -c && \
@@ -30,6 +41,7 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr.. && make install && cd /
 
-RUN apt-get autoclean -y && apt-get autoremove -y
+RUN apt-get autoclean -y && \
+    apt-get autoremove -y
 
 ENTRYPOINT ["/bin/bash", "-c"]

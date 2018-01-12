@@ -6,11 +6,18 @@ LABEL maintainer="takahasi <3263ta@gmail.com>" \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && dnf update -y
+RUN set -x && \
+    dnf update -y
 
 COPY pkg_install.sh /
-RUN dnf install -y bc iputils-ping net-tools subversion git cmake && \
-    dnf install -y libopencv-dev && \
+RUN dnf install -y bc \
+                       cmake \
+                       git \
+                       iputils-ping \
+                       libopencv-dev \
+                       net-tools \
+                       python-tk \
+                       subversion && \
     chmod a+x ./pkg_install.sh && sync && \
     ./pkg_install.sh -l all -c --yes && \
     ./pkg_install.sh -l all -d --yes && \
@@ -18,6 +25,7 @@ RUN dnf install -y bc iputils-ping net-tools subversion git cmake && \
     cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make install && cd /
 
-RUN dnf autoclean -y && dnf autoremove -y
+RUN dnf autoclean -y && \
+    dnf autoremove -y
 
 ENTRYPOINT ["/bin/bash", "-c"]

@@ -6,13 +6,25 @@ LABEL maintainer="takahasi <3263ta@gmail.com>" \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && apt-get update -qq
+RUN set -x && \
+    apt-get update -qq
 
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
-    apt-get install -y libopencv-dev && \
-    apt-get install -y python-pip python-tk && \
-    apt-get install -y default-jre && \
-    apt-get install -y lxde xrdp && \
+RUN apt-get install -y curl \
+                       bc \
+                       bsdmainutils \
+                       apt-utils \
+                       aptitude \
+                       iputils-ping \
+                       net-tools \
+                       subversion \
+                       git \
+                       cmake \
+                       libopencv-dev \
+                       python-pip \
+                       python-tk \
+                       default-jre \
+                       lxde \
+                       xrdp && \
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_ubuntu.sh && \
     chmod a+x pkg_install_ubuntu.sh && sync && \
     ./pkg_install_ubuntu.sh -c && \
@@ -33,8 +45,8 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \
     yes root | passwd root
 
-CMD ["/etc/init.d/xvnc", "start"]
 
-RUN apt-get autoclean -y && apt-get autoremove -y
+RUN apt-get autoclean -y && \
+    apt-get autoremove -y
 
 ENTRYPOINT ["/bin/bash", "-c"]

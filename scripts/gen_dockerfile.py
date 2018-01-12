@@ -16,21 +16,29 @@ LABEL maintainer="{maintainer}" \\
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && apt-get update -qq
+RUN set -x && \\
+    apt-get update -qq
 '''
 
 dockerfile_template_common_footer = '''
-RUN apt-get autoclean -y && apt-get autoremove -y
+RUN apt-get autoclean -y && \\
+    apt-get autoremove -y
 
 ENTRYPOINT ["/bin/bash", "-c"]
 '''
 
 dockerfile_template_12x_all_desktop = '''
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
-    apt-get install -y libopencv-dev && \\
-    apt-get install -y lxde xrdp && \\
-    apt-get install -y python-tk && \\
+RUN apt-get install -y bc \\
+                       cmake \\
+                       git \\
+                       iputils-ping \\
+                       libopencv-dev \\
+                       lxde \\
+                       net-tools \\
+                       python-tk \\
+                       subversion \\
+                       xrdp && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     ./pkg_install.sh -l all -d --yes && \\
@@ -40,13 +48,18 @@ RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
     yes root | passwd root
 
-CMD ["/etc/init.d/xvnc", "start"]
 '''
 
 dockerfile_template_12x_all = '''
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
-    apt-get install -y libopencv-dev && \\
+RUN apt-get install -y bc \\
+                       cmake \\
+                       git \\
+                       iputils-ping \\
+                       libopencv-dev \\
+                       net-tools \\
+                       python-tk \\
+                       subversion && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l all -c --yes && \\
     ./pkg_install.sh -l all -d --yes && \\
@@ -57,32 +70,48 @@ RUN apt-get install -y bc iputils-ping net-tools subversion git cmake && \\
 
 dockerfile_template_12x_cxx = '''
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools && \\
+RUN apt-get install -y bc \\
+                       iputils-ping \\
+                       net-tools && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l c++ -r --yes
 '''
 
 dockerfile_template_12x_python = '''
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools && \\
+RUN apt-get install -y bc \\
+                       iputils-ping \\
+                       net-tools && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l python -r --yes
 '''
 
 dockerfile_template_12x_java = '''
 COPY pkg_install.sh /
-RUN apt-get install -y bc iputils-ping net-tools && \\
+RUN apt-get install -y bc \\
+                       iputils-ping \\
+                       net-tools && \\
     chmod a+x ./pkg_install.sh && sync && \\
     ./pkg_install.sh -l java -r --yes
 '''
 
-
 dockerfile_template_11x_all_desktop = '''
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \\
-    apt-get install -y libopencv-dev && \\
-    apt-get install -y python-pip python-tk && \\
-    apt-get install -y default-jre && \\
-    apt-get install -y lxde xrdp && \\
+RUN apt-get install -y curl \\
+                       bc \\
+                       bsdmainutils \\
+                       apt-utils \\
+                       aptitude \\
+                       iputils-ping \\
+                       net-tools \\
+                       subversion \\
+                       git \\
+                       cmake \\
+                       libopencv-dev \\
+                       python-pip \\
+                       python-tk \\
+                       default-jre \\
+                       lxde \\
+                       xrdp && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
     chmod a+x pkg_install_{dist}.sh && sync && \\
     ./pkg_install_{dist}.sh -c && \\
@@ -103,14 +132,23 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
     echo lxsession -s LXDE -e LXDE > ~/.xsession && \\
     yes root | passwd root
 
-CMD ["/etc/init.d/xvnc", "start"]
 '''
 
 dockerfile_template_11x_all = '''
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \\
-    apt-get install -y libopencv-dev && \\
-    apt-get install -y python-pip && \\
-    apt-get install -y default-jre && \\
+RUN apt-get install -y curl \\
+                       bc \\
+                       bsdmainutils \\
+                       apt-utils \\
+                       aptitude \\
+                       iputils-ping \\
+                       net-tools \\
+                       subversion \\
+                       git \\
+                       cmake \\
+                       libopencv-dev \\
+                       python-pip \\
+                       python-tk \\
+                       default-jre &&\\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
     chmod a+x pkg_install_{dist}.sh && sync && \\
     ./pkg_install_{dist}.sh -c && \\
@@ -131,15 +169,27 @@ RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-
 '''
 
 dockerfile_template_11x_cxx = '''
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
+RUN apt-get install -y curl \\
+                       bc \\
+                       bsdmainutils \\
+                       apt-utils \\
+                       aptitude \\
+                       iputils-ping \\
+                       net-tools && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_{rtmver}/OpenRTM-aist/build/pkg_install_{dist}.sh && \\
     chmod a+x pkg_install_{dist}.sh && sync && \\
     ./pkg_install_{dist}.sh -c
 '''
 
 dockerfile_template_11x_python = '''
-RUN apt-get install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools && \\
-    apt-get install -y python-pip && \\
+RUN apt-get install -y curl \\
+                       bc \\
+                       bsdmainutils \\
+                       apt-utils \\
+                       aptitude \\
+                       iputils-ping \\
+                       python-pip \\
+                       net-tools && \\
     curl -O http://svn.openrtm.org/OpenRTM-aist-Python/tags/RELEASE_{rtmver}/OpenRTM-aist-Python/installer/install_scripts/pkg_install_python_{dist}.sh && \\
     chmod a+x pkg_install_python_{dist}.sh && sync && \\
     ./pkg_install_python_{dist}.sh -y
@@ -228,6 +278,7 @@ class DockerImage:
 
             if self._dist == "fedora":
                 m = m.replace("apt-get", "dnf")
+                m = m.replace("libutils-ping", "")
                 m = m.replace("-qq", "-y")
 
             f.write(m)
@@ -260,9 +311,9 @@ if __name__ == '__main__':
     types = [
         "all_desktop",
         "all",
-        "cxx",
-        "python",
-        "java"
+        # "cxx",
+        # "python",
+        # "java"
     ]
 
     for v in version:

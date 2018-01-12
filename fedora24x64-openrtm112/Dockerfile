@@ -6,12 +6,23 @@ LABEL maintainer="takahasi <3263ta@gmail.com>" \
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN set -x && dnf update -y
+RUN set -x && \
+    dnf update -y
 
-RUN dnf install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tools subversion git cmake && \
-    dnf install -y libopencv-dev && \
-    dnf install -y python-pip && \
-    dnf install -y default-jre && \
+RUN dnf install -y curl \
+                       bc \
+                       bsdmainutils \
+                       apt-utils \
+                       aptitude \
+                       iputils-ping \
+                       net-tools \
+                       subversion \
+                       git \
+                       cmake \
+                       libopencv-dev \
+                       python-pip \
+                       python-tk \
+                       default-jre &&\
     curl -O http://svn.openrtm.org/OpenRTM-aist/tags/RELEASE_1_1_2/OpenRTM-aist/build/pkg_install_fedora.sh && \
     chmod a+x pkg_install_fedora.sh && sync && \
     ./pkg_install_fedora.sh -c && \
@@ -30,6 +41,7 @@ RUN dnf install -y curl bc bsdmainutils apt-utils aptitude iputils-ping net-tool
     cd ImageProcessing/opencv/components/ && mkdir -p build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr.. && make install && cd /
 
-RUN dnf autoclean -y && dnf autoremove -y
+RUN dnf autoclean -y && \
+    dnf autoremove -y
 
 ENTRYPOINT ["/bin/bash", "-c"]
