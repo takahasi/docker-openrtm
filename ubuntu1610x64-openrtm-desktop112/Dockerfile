@@ -33,8 +33,7 @@ RUN apt-get install -y curl \
     ./pkg_install_python_ubuntu.sh -y && \
     pip install -U pip && \
     pip install rtshell && \
-    mkdir -p /etc/bash_completion.d/ && \
-    cp /usr/local/lib/python2.7/dist-packages/rtshell/data/bash_completion /etc/bash_completion.d/ && \
+    rtshell_post_install -n && \
     curl -O http://openrtm.org/pub/openrtp/packages/1.1.2.v20160526/eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     tar xzf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
     rm -rf eclipse442-openrtp112v20160526-linux-gtk-x86_64.tar.gz && \
